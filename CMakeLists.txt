@@ -14,6 +14,10 @@ target_sources(Stdm
         Stdm/Containers.cpp
             Stdm/Containers/Vector.cpp
             Stdm/Containers/Deque.cpp
+            Stdm/Containers/Array.cpp
+            Stdm/Containers/List.cpp
+            Stdm/Containers/Forward_List.cpp
+            Stdm/Containers/Map.cpp
         Stdm/IO.cpp
             Stdm/IO/Iostream.cpp
         Stdm/Utils.cpp
