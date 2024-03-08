@@ -1,4 +1,4 @@
-import Stdm;
+#include <stdh.hpp>
 
 int main()
 {
