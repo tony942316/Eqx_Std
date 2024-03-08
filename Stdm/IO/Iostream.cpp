@@ -4,18 +4,15 @@ module;
 
 export module Stdm.IO.Iostream;
 
-export
+export using std::operator<<;
+export using std::operator>>;
+export namespace stdm
 {
-    using std::operator<<;
-    using std::operator>>;
-    namespace stdm
-    {
-        using std::cout;
-        using std::cerr;
-        using std::clog;
-        using std::cin;
-        using std::endl;
-        using std::flush;
-    }
+    using std::cout;
+    using std::cerr;
+    using std::clog;
+    using std::cin;
+    using std::endl;
+    using std::flush;
 }
 

@@ -10,11 +10,14 @@ add_library(Stdm)
 target_sources(Stdm
     PUBLIC FILE_SET CXX_MODULES FILES
         Stdm/Stdm.cpp
-        Stdm/Containers.cpp
-        Stdm/IO.cpp
         Stdm/Concepts.cpp
-        Stdm/Containers/Vector.cpp
-        Stdm/IO/Iostream.cpp)
+        Stdm/Containers.cpp
+            Stdm/Containers/Vector.cpp
+            Stdm/Containers/Deque.cpp
+        Stdm/IO.cpp
+            Stdm/IO/Iostream.cpp
+        Stdm/Utils.cpp
+            Stdm/Utils/Initializer_List.cpp)
 target_compile_features(Stdm PUBLIC cxx_std_20)
 set_target_properties(Stdm PROPERTIES
     CXX_STANDARD_REQUIRED On
