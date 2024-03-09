@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.28)
 add_library(Tests STATIC)
 target_sources(Tests
     PUBLIC FILE_SET CXX_MODULES FILES
+        Tests.cpp
         TestStdm/TestContainers/TestArray.cpp)
 target_compile_features(Tests PUBLIC cxx_std_20)
 set_target_properties(Tests PROPERTIES

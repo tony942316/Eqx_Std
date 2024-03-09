@@ -1,7 +1,7 @@
-import TestArray;
+import Tests;
 
 int main()
 {
-    Test::Array::Run();
+    Test::All();
     return 0;
 }
