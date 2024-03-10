@@ -4,12 +4,6 @@ module;
 
 export module Stdm.Utils.Initializer_List;
 
-
-export namespace std
-{
-    using std::initializer_list;
-}
-
 export namespace stdm
 {
     using std::initializer_list;

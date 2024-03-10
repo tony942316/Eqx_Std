@@ -44,5 +44,6 @@ Diagnostics:
       fuchsia-default-arguments-declarations,
       fuchsia-default-arguments-calls,
       fuchsia-statically-constructed-objects,
+      fuchsia-trailing-return,
       cert-dcl58-cpp ]
   UnusedIncludes: None

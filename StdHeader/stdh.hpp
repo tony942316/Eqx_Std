@@ -1,6 +1,9 @@
 #ifndef STDHEADER_STDH_HPP
 #define STDHEADER_STDH_HPP
 
+// Concepts
+#include <concepts>
+
 // Containers
 #include <array>
 #include <deque>
@@ -17,6 +20,10 @@
 
 // IO
 #include <iostream>
+
+// Strings
+#include <string>
+#include <string_view>
 
 // Utils
 #include <initializer_list>

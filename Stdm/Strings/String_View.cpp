@@ -1,24 +1,31 @@
 module;
 
-#include <array>
+#include <string_view>
 
-export module Stdm.Containers.Array;
+export module Stdm.Strings.String_View;
 
 // Functions
 export using std::operator==;
 export using std::operator<=>;
 
+// Input/Output
+export using std::operator<<;
+
+// Literals
+export using std::operator""sv;
+
 export namespace stdm
 {
     // Classes
-    using std::array;
-    using std::tuple_size;
-    using std::tuple_element;
+    using std::basic_string_view;
+    using std::string_view;
+    using std::u8string_view;
+    using std::u16string_view;
+    using std::u32string_view;
+    using std::wstring_view;
 
     // Functions
     using std::swap;
-    using std::to_array;
-    using std::get;
 
     // Range Access
     using std::begin;

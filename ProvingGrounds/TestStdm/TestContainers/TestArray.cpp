@@ -117,10 +117,70 @@ namespace Test::Array::CTT
     using type = stdm::tuple_element<0, stdm::array<int, 3>>::type;
 }
 
-export namespace Test::Array
+namespace Test::Array
 {
-    void Run() noexcept
-    {
+    using sizetype = decltype(stdm::array<int, 0>().size());
 
+    template <sizetype sizea, sizetype sizeb>
+    [[nodiscard]] constexpr stdm::array<int, sizea + sizeb> merge(
+        const stdm::array<int, sizea>& a,
+        const stdm::array<int, sizeb>& b) noexcept
+    {
+        if constexpr (sizeb == 0)
+        {
+            return a;
+        }
+        else if constexpr (sizea == 0)
+        {
+            return b;
+        }
+        else
+        {
+            auto result = stdm::array<int, sizea + sizeb>();
+            auto aIter = a.cbegin();
+            auto bIter = b.cbegin();
+            auto rIter = result.begin();
+
+            while(aIter != a.cend() && bIter != b.cend())
+            {
+                if (*aIter < *bIter)
+                {
+                    *rIter = *aIter;
+                    aIter++;
+                }
+                else
+                {
+                    *rIter = *bIter;
+                    bIter++;
+                }
+                rIter++;
+            }
+
+            for (auto i = aIter; i != a.cend(); i++, rIter++)
+            {
+                *rIter = *i;
+            }
+
+            for (auto i = bIter; i != b.cend(); i++, rIter++)
+            {
+                *rIter = *i;
+            }
+
+            return result;
+        }
+
+    }
+
+    static_assert(merge(CTT::Arr::Basic, CTT::Arr::Basic) ==
+        stdm::array<int, 6>({ 1, 1, 2, 2, 3, 3 }));
+    static_assert(merge(CTT::Arr::Basic, CTT::Arr::NoElements) ==
+        CTT::Arr::Basic);
+    static_assert(merge(CTT::Arr::NoElements, CTT::Arr::Basic) ==
+        CTT::Arr::Basic);
+    static_assert(merge(CTT::Arr::Basic, CTT::Arr::FS) ==
+        stdm::array<int, 6>({ 1, 2, 2, 2, 2, 3 }));
+
+    export void Run() noexcept
+    {
     }
 }

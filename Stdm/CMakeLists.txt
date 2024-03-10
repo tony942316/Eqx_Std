@@ -20,6 +20,9 @@ target_sources(Stdm
             Containers/Vector.cpp
         IO.cpp
             IO/Iostream.cpp
+        Strings.cpp
+            Strings/String.cpp
+            Strings/String_View.cpp
         Utils.cpp
             Utils/Initializer_List.cpp)
 target_compile_features(Stdm PUBLIC cxx_std_20)
