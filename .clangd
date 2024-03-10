@@ -23,6 +23,7 @@ Diagnostics:
       bugprone-easily-swappable-parameters,
       misc-non-private-member-variables-in-classes,
       misc-unused-using-decls,
+      misc-redundant-expression,
       cppcoreguidelines-avoid-magic-numbers,
       cppcoreguidelines-pro-type-reinterpret-cast,
       cppcoreguidelines-avoid-non-const-global-variables,
@@ -42,5 +43,6 @@ Diagnostics:
       fuchsia-overloaded-operator,
       fuchsia-default-arguments-declarations,
       fuchsia-default-arguments-calls,
+      fuchsia-statically-constructed-objects,
       cert-dcl58-cpp ]
   UnusedIncludes: None
