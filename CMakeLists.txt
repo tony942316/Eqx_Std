@@ -25,7 +25,3 @@ set_target_properties(HeaderMain PROPERTIES
     CXX_EXTENSIONS Off
     EXPORT_COMPILE_COMMANDS On)
 target_link_libraries(HeaderMain PRIVATE StdHeader)
-
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    add_subdirectory(ProvingGrounds)
-endif()
