@@ -23,6 +23,8 @@ target_sources(Stdm
             Containers/Vector.cpp
         IO.cpp
             IO/Iostream.cpp
+        Numerics.cpp
+            Numerics/Random.cpp
         Ranges.cpp
             Ranges/Ranges.cpp
         Strings.cpp
