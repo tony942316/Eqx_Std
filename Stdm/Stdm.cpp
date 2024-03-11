@@ -1,5 +1,6 @@
 export module Stdm;
 
+export import Stdm.Algorithms;
 export import Stdm.Concepts;
 export import Stdm.Containers;
 export import Stdm.IO;

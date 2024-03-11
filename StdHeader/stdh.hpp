@@ -1,6 +1,10 @@
 #ifndef STDHEADER_STDH_HPP
 #define STDHEADER_STDH_HPP
 
+// Algorithms
+#include <algorithm>
+#include <numeric>
+
 // Concepts
 #include <concepts>
 

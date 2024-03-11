@@ -4,6 +4,9 @@ add_library(Stdm STATIC)
 target_sources(Stdm
     PUBLIC FILE_SET CXX_MODULES FILES
         Stdm.cpp
+        Algorithms.cpp
+            Algorithms/Algorithm.cpp
+            Algorithms/Numeric.cpp
         Concepts.cpp
         Containers.cpp
             Containers/Array.cpp
