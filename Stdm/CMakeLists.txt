@@ -20,6 +20,8 @@ target_sources(Stdm
             Containers/Vector.cpp
         IO.cpp
             IO/Iostream.cpp
+        Ranges.cpp
+            Ranges/Ranges.cpp
         Strings.cpp
             Strings/String.cpp
             Strings/String_View.cpp

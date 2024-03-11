@@ -21,6 +21,9 @@
 // IO
 #include <iostream>
 
+// Ranges
+#include <ranges>
+
 // Strings
 #include <string>
 #include <string_view>
