@@ -24,6 +24,7 @@ target_sources(Stdm
         IO.cpp
             IO/Iostream.cpp
         Numerics.cpp
+            Numerics/Numbers.cpp
             Numerics/Random.cpp
         Ranges.cpp
             Ranges/Ranges.cpp

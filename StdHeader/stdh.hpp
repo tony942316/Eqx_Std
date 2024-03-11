@@ -25,6 +25,10 @@
 // IO
 #include <iostream>
 
+// Numerics
+#include <numbers>
+#include <random>
+
 // Ranges
 #include <ranges>
 
