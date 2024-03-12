@@ -8,6 +8,7 @@ target_sources(Stdm
             Algorithms/Algorithm.cpp
             Algorithms/Numeric.cpp
         Concepts.cpp
+            Concepts/Concepts.cpp
         Containers.cpp
             Containers/Array.cpp
             Containers/Deque.cpp
