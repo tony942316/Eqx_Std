@@ -40,6 +40,8 @@
 #include <chrono>
 
 // Utils
+#include <functional>
 #include <initializer_list>
+#include <optional>
 
 #endif // STDHEADER_STDH_HPP

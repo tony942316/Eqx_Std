@@ -35,7 +35,9 @@ target_sources(Stdm
         Time.cpp
             Time/Chrono.cpp
         Utils.cpp
-            Utils/Initializer_List.cpp)
+            Utils/Functional.cpp
+            Utils/Initializer_List.cpp
+            Utils/Optional.cpp)
 target_compile_features(Stdm PUBLIC cxx_std_20)
 set_target_properties(Stdm PROPERTIES
     CXX_STANDARD_REQUIRED On
