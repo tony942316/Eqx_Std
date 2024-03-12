@@ -36,6 +36,9 @@
 #include <string>
 #include <string_view>
 
+// Time
+#include <chrono>
+
 // Utils
 #include <initializer_list>
 

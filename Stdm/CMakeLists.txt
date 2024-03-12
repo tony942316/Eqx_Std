@@ -31,6 +31,8 @@ target_sources(Stdm
         Strings.cpp
             Strings/String.cpp
             Strings/String_View.cpp
+        Time.cpp
+            Time/Chrono.cpp
         Utils.cpp
             Utils/Initializer_List.cpp)
 target_compile_features(Stdm PUBLIC cxx_std_20)
