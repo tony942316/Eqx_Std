@@ -36,8 +36,10 @@ target_sources(Stdm
             Time/Chrono.cpp
         Utils.cpp
             Utils/CStdDef.cpp
+            Utils/CStdInt.cpp
             Utils/Functional.cpp
             Utils/Initializer_List.cpp
+            Utils/Limits.cpp
             Utils/Optional.cpp
             Utils/Source_Location.cpp)
 target_compile_features(Stdm PUBLIC cxx_std_20)
