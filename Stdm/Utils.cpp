@@ -1,5 +1,6 @@
 export module Stdm.Utils;
 
+export import Stdm.Utils.Compare;
 export import Stdm.Utils.CStdDef;
 export import Stdm.Utils.CStdInt;
 export import Stdm.Utils.Functional;

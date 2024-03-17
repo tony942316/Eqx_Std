@@ -8,6 +8,16 @@
 // Concepts
 #include <concepts>
 
+// Concurrency
+#include <atomic>
+#include <barrier>
+#include <condition_variable>
+#include <future>
+#include <latch>
+#include <mutex>
+#include <semaphore>
+#include <thread>
+
 // Containers
 #include <array>
 #include <deque>
@@ -49,6 +59,7 @@
 #include <chrono>
 
 // Utils
+#include <compare>
 #include <cstddef>
 #include <cstdint>
 #include <functional>

@@ -9,6 +9,15 @@ target_sources(Stdm
             Algorithms/Numeric.cpp
         Concepts.cpp
             Concepts/Concepts.cpp
+        Concurrency.cpp
+            Concurrency/Atomic.cpp
+            Concurrency/Barrier.cpp
+            Concurrency/Condition_Variable.cpp
+            Concurrency/Future.cpp
+            Concurrency/Latch.cpp
+            Concurrency/Mutex.cpp
+            Concurrency/Semaphore.cpp
+            Concurrency/Thread.cpp
         Containers.cpp
             Containers/Array.cpp
             Containers/Deque.cpp
@@ -42,6 +51,7 @@ target_sources(Stdm
         Time.cpp
             Time/Chrono.cpp
         Utils.cpp
+            Utils/Compare.cpp
             Utils/CStdDef.cpp
             Utils/CStdInt.cpp
             Utils/Functional.cpp
