@@ -34,6 +34,7 @@ target_sources(Stdm
         IO.cpp
             IO/FileSystem.cpp
             IO/FStream.cpp
+            IO/Iomanip.cpp
             IO/Iostream.cpp
             IO/StringStream.cpp
         Iterator.cpp
@@ -54,6 +55,7 @@ target_sources(Stdm
             Utils/Compare.cpp
             Utils/CStdDef.cpp
             Utils/CStdInt.cpp
+            Utils/Execution.cpp
             Utils/Functional.cpp
             Utils/Initializer_List.cpp
             Utils/Limits.cpp
