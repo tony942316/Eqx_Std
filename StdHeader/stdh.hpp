@@ -23,7 +23,16 @@
 #include <vector>
 
 // IO
+#include <filesystem>
+#include <fstream>
 #include <iostream>
+#include <sstream>
+
+// Iterator
+#include <iterator>
+
+// Meta
+#include <type_traits>
 
 // Numerics
 #include <numbers>

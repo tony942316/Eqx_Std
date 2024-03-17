@@ -23,7 +23,14 @@ target_sources(Stdm
             Containers/Unordered_Set.cpp
             Containers/Vector.cpp
         IO.cpp
+            IO/FileSystem.cpp
+            IO/FStream.cpp
             IO/Iostream.cpp
+            IO/StringStream.cpp
+        Iterator.cpp
+            Iterator/Iterator.cpp
+        Meta.cpp
+            Meta/Type_Traits.cpp
         Numerics.cpp
             Numerics/Numbers.cpp
             Numerics/Random.cpp
