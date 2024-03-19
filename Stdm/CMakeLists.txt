@@ -60,7 +60,8 @@ target_sources(Stdm
             Utils/Initializer_List.cpp
             Utils/Limits.cpp
             Utils/Optional.cpp
-            Utils/Source_Location.cpp)
+            Utils/Source_Location.cpp
+            Utils/Utility.cpp)
 target_compile_features(Stdm PUBLIC cxx_std_20)
 set_target_properties(Stdm PROPERTIES
     CXX_STANDARD_REQUIRED On
