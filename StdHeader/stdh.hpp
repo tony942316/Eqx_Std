@@ -42,6 +42,9 @@
 // Iterator
 #include <iterator>
 
+// Locale
+#include <locale>
+
 // Meta
 #include <type_traits>
 

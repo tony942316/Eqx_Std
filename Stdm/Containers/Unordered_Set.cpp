@@ -4,14 +4,20 @@ module;
 
 export module Stdm.Containers.Unordered_Set;
 
+// Operators
 export using std::operator==;
 
 export namespace stdm
 {
+    // Classes
     using std::unordered_set;
     using std::unordered_multiset;
+
+    // Functions
     using std::swap;
     using std::erase_if;
+
+    // Range Access
     using std::begin;
     using std::cbegin;
     using std::end;

@@ -39,6 +39,8 @@ target_sources(Stdm
             IO/StringStream.cpp
         Iterator.cpp
             Iterator/Iterator.cpp
+        Locale.cpp
+            Locale/Locale.cpp
         Meta.cpp
             Meta/Type_Traits.cpp
         Numerics.cpp

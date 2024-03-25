@@ -4,15 +4,21 @@ module;
 
 export module Stdm.Containers.List;
 
+// Operators
 export using std::operator==;
 export using std::operator<=>;
 
 export namespace stdm
 {
+    // Classes
     using std::list;
+
+    // Functions
     using std::swap;
     using std::erase;
     using std::erase_if;
+
+    // Range Access
     using std::begin;
     using std::cbegin;
     using std::end;

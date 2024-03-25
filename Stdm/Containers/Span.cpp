@@ -6,10 +6,17 @@ export module Stdm.Containers.Span;
 
 export namespace stdm
 {
+    // Classes
     using std::span;
+
+    // Constants
     using std::dynamic_extent;
+
+    // Functions
     using std::as_bytes;
     using std::as_writable_bytes;
+
+    // Range Access
     using std::begin;
     using std::cbegin;
     using std::end;

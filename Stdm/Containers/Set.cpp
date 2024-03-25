@@ -4,15 +4,21 @@ module;
 
 export module Stdm.Containers.Set;
 
+// Opeartors
 export using std::operator==;
 export using std::operator<=>;
 
 export namespace stdm
 {
+    // Classes
     using std::set;
     using std::multiset;
+
+    // Functions
     using std::swap;
     using std::erase_if;
+
+    // Range Access
     using std::begin;
     using std::cbegin;
     using std::end;

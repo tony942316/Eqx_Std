@@ -4,7 +4,7 @@ module;
 
 export module Stdm.Containers.Array;
 
-// Functions
+// Operators
 export using std::operator==;
 export using std::operator<=>;
 
