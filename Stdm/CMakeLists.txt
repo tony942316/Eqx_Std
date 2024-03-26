@@ -44,6 +44,7 @@ target_sources(Stdm
         Meta.cpp
             Meta/Type_Traits.cpp
         Numerics.cpp
+            Numerics/CMath.cpp
             Numerics/Numbers.cpp
             Numerics/Random.cpp
         Ranges.cpp
@@ -57,6 +58,7 @@ target_sources(Stdm
             Utils/Compare.cpp
             Utils/CStdDef.cpp
             Utils/CStdInt.cpp
+            Utils/CStdLib.cpp
             Utils/Execution.cpp
             Utils/Functional.cpp
             Utils/Initializer_List.cpp

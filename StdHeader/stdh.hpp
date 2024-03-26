@@ -49,6 +49,7 @@
 #include <type_traits>
 
 // Numerics
+#include <cmath>
 #include <numbers>
 #include <random>
 
@@ -66,6 +67,7 @@
 #include <compare>
 #include <cstddef>
 #include <cstdint>
+#include <cstdlib>
 #include <execution>
 #include <functional>
 #include <initializer_list>
