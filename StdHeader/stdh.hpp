@@ -52,6 +52,7 @@
 
 // Numerics
 #include <cmath>
+#include <complex>
 #include <numbers>
 #include <random>
 
