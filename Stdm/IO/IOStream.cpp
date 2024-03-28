@@ -2,7 +2,7 @@ module;
 
 #include <iostream>
 
-export module Stdm.IO.Iostream;
+export module Stdm.IO.IOStream;
 
 export using std::operator<<;
 export using std::operator>>;

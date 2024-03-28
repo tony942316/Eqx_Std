@@ -37,6 +37,8 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <istream>
+#include <ostream>
 #include <sstream>
 
 // Iterator

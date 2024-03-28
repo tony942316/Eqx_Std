@@ -34,8 +34,10 @@ target_sources(Stdm
         IO.cpp
             IO/FileSystem.cpp
             IO/FStream.cpp
-            IO/Iomanip.cpp
-            IO/Iostream.cpp
+            IO/IOManip.cpp
+            IO/IOStream.cpp
+            IO/IStream.cpp
+            IO/OStream.cpp
             IO/StringStream.cpp
         Iterator.cpp
             Iterator/Iterator.cpp
