@@ -57,10 +57,12 @@ target_sources(Stdm
         Time.cpp
             Time/Chrono.cpp
         Utils.cpp
+            Utils/Bit.cpp
             Utils/Compare.cpp
             Utils/CStdDef.cpp
             Utils/CStdInt.cpp
             Utils/CStdLib.cpp
+            Utils/Exception.cpp
             Utils/Execution.cpp
             Utils/Functional.cpp
             Utils/Initializer_List.cpp

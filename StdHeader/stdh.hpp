@@ -66,10 +66,12 @@
 #include <chrono>
 
 // Utils
+#include <bit>
 #include <compare>
 #include <cstddef>
 #include <cstdint>
 #include <cstdlib>
+#include <exception>
 #include <execution>
 #include <functional>
 #include <initializer_list>
