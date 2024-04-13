@@ -2,8 +2,12 @@ import Stdm;
 
 int main()
 {
-    stdm::locale::global(stdm::locale{ "C.UTF-8" });
-    auto xxx = stdm::locale{ "" };
-    stdm::cout << xxx.name() << stdm::endl;
+    auto vec = stdm::vector<int>{ 1, 2, 3 };
+    stdm::cout << "Vec: ";
+    stdm::ranges::for_each(vec, [](int ele)
+        { stdm::cout << ele << ' '; });
+    stdm::cout << stdm::endl;
+    stdm::cout << "End: ";
+    stdm::cin.get();
     return 0;
 }
