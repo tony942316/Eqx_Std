@@ -30,7 +30,9 @@ export namespace stdm
 
     // Memory Management
     using std::malloc;
+#ifndef _WIN32
     using std::aligned_alloc;
+#endif // _WIN32
     using std::calloc;
     using std::realloc;
     using std::free;

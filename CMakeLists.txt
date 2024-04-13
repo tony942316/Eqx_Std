@@ -15,7 +15,11 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     target_compile_features(ModMain PRIVATE cxx_std_20)
     target_link_libraries(ModMain PRIVATE Stdm)
 
-    target_compile_options(GMF INTERFACE -fno-exceptions)
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        target_compile_options(GMF INTERFACE /GR-)
+    else ()
+        target_compile_options(GMF INTERFACE -fno-rtti)
+    endif()
 
     set_target_properties(ModMain PROPERTIES
         CXX_STANDARD_REQUIRED On

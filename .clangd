@@ -11,5 +11,6 @@ Diagnostics:
       bugprone-* ]
     Remove: [ performance-avoid-endl,
       modernize-use-trailing-return-type,
-      readability-avoid-const-params-in-decls ]
+      readability-avoid-const-params-in-decls,
+      misc-unused-using-decls ]
   UnusedIncludes: None
