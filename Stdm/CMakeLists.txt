@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 
+add_library(GMF INTERFACE) # Global Module Flags
+
 add_library(Stdm STATIC)
 target_sources(Stdm
     PUBLIC FILE_SET CXX_MODULES FILES
@@ -72,6 +74,8 @@ target_sources(Stdm
             Utils/Source_Location.cpp
             Utils/Utility.cpp)
 target_compile_features(Stdm PUBLIC cxx_std_20)
+target_link_libraries(Stdm PUBLIC GMF)
+
 set_target_properties(Stdm PROPERTIES
     CXX_STANDARD_REQUIRED On
     CXX_EXTENSIONS Off

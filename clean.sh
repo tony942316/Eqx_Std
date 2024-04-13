@@ -2,4 +2,4 @@
 
 rm -rf out/build/
 mkdir out/build/
-CXX=clang++-17 cmake -S . -B out/build/ -GNinja > /dev/null
+CXX=clang++-18 cmake -S . -B out/build/ -GNinja > /dev/null
