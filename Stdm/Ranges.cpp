@@ -1,3 +1,3 @@
-export module Stdm.Ranges;
+export module Eqx.Stdm.Ranges;
 
-export import Stdm.Ranges.Ranges;
+export import Eqx.Stdm.Ranges.Ranges;

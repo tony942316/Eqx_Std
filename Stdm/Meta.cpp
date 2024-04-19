@@ -1,3 +1,3 @@
-export module Stdm.Meta;
+export module Eqx.Stdm.Meta;
 
-export import Stdm.Meta.Type_Traits;
+export import Eqx.Stdm.Meta.Type_Traits;

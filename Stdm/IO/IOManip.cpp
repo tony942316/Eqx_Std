@@ -2,7 +2,7 @@ module;
 
 #include <iomanip>
 
-export module Stdm.IO.IOManip;
+export module Eqx.Stdm.IO.IOManip;
 
 export namespace stdm
 {

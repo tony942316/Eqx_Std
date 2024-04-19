@@ -2,7 +2,7 @@ module;
 
 #include <atomic>
 
-export module Stdm.Concurrency.Atomic;
+export module Eqx.Stdm.Concurrency.Atomic;
 
 export namespace stdm
 {

@@ -2,7 +2,7 @@ module;
 
 #include <thread>
 
-export module Stdm.Concurrency.Thread;
+export module Eqx.Stdm.Concurrency.Thread;
 
 export using std::operator==;
 export using std::operator<=>;

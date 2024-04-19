@@ -2,7 +2,7 @@ module;
 
 #include <source_location>
 
-export module Stdm.Utils.Source_Location;
+export module Eqx.Stdm.Utils.Source_Location;
 
 export namespace stdm
 {

@@ -2,7 +2,7 @@ module;
 
 #include <cmath>
 
-export module Stdm.Numerics.CMath;
+export module Eqx.Stdm.Numerics.CMath;
 
 export namespace stdm
 {

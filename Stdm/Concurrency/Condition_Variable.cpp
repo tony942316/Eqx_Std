@@ -2,7 +2,7 @@ module;
 
 #include <condition_variable>
 
-export module Stdm.Concurrency.Condition_Variable;
+export module Eqx.Stdm.Concurrency.Condition_Variable;
 
 export namespace stdm
 {

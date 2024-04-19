@@ -2,7 +2,7 @@ module;
 
 #include <iterator>
 
-export module Stdm.Iterator.Iterator;
+export module Eqx.Stdm.Iterator.Iterator;
 
 // Operators
 export using std::operator==;

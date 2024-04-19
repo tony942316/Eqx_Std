@@ -2,7 +2,7 @@ module;
 
 #include <complex>
 
-export module Stdm.Numerics.Complex;
+export module Eqx.Stdm.Numerics.Complex;
 
 // Operators
 using std::operator+;

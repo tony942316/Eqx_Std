@@ -2,7 +2,7 @@ module;
 
 #include <locale>
 
-export module Stdm.Locale.Locale;
+export module Eqx.Stdm.Locale.Locale;
 
 export namespace stdm
 {

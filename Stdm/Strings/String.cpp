@@ -2,7 +2,7 @@ module;
 
 #include <string>
 
-export module Stdm.Strings.String;
+export module Eqx.Stdm.Strings.String;
 
 // Functions
 export using std::operator+;

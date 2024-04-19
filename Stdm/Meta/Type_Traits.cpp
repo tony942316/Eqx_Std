@@ -2,7 +2,7 @@ module;
 
 #include <type_traits>
 
-export module Stdm.Meta.Type_Traits;
+export module Eqx.Stdm.Meta.Type_Traits;
 
 export namespace stdm
 {

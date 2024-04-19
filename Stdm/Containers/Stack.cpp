@@ -2,7 +2,7 @@ module;
 
 #include <stack>
 
-export module Stdm.Containers.Stack;
+export module Eqx.Stdm.Containers.Stack;
 
 // Operators
 export using std::operator==;

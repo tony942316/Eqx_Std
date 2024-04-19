@@ -2,7 +2,7 @@ module;
 
 #include <set>
 
-export module Stdm.Containers.Set;
+export module Eqx.Stdm.Containers.Set;
 
 // Opeartors
 export using std::operator==;

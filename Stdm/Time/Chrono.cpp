@@ -2,7 +2,7 @@ module;
 
 #include <chrono>
 
-export module Stdm.Time.Chrono;
+export module Eqx.Stdm.Time.Chrono;
 
 // Operators
 export using std::chrono::operator+;

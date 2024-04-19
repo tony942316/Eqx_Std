@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.28)
 
-project(
-    Stdm
-    VERSION 0.1.0
+project(Stdm
+    VERSION 0.9.0
     DESCRIPTION "C++ Standard Library As Modules"
     LANGUAGES CXX)
+
+message("Compiler is: ${CMAKE_CXX_COMPILER_ID}")
 
 add_subdirectory(Stdm)
 add_subdirectory(StdHeader)
@@ -31,7 +32,6 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     target_link_libraries(HeaderMain PRIVATE StdHeader)
 
     set_target_properties(HeaderMain PROPERTIES
-        CXX_STANDARD_REQUIRED On
         CXX_EXTENSIONS Off
         EXPORT_COMPILE_COMMANDS On)
 endif()

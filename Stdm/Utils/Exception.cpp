@@ -2,7 +2,7 @@ module;
 
 #include <exception>
 
-export module Stdm.Utils.Exception;
+export module Eqx.Stdm.Utils.Exception;
 
 export namespace stdm
 {

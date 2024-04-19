@@ -2,7 +2,7 @@ module;
 
 #include <random>
 
-export module Stdm.Numerics.Random;
+export module Eqx.Stdm.Numerics.Random;
 
 export namespace stdm
 {

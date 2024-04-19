@@ -2,7 +2,7 @@ module;
 
 #include <barrier>
 
-export module Stdm.Concurrency.Barrier;
+export module Eqx.Stdm.Concurrency.Barrier;
 
 export namespace stdm
 {

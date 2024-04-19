@@ -1,3 +1,3 @@
-export module Stdm.Locale;
+export module Eqx.Stdm.Locale;
 
-export import Stdm.Locale.Locale;
+export import Eqx.Stdm.Locale.Locale;

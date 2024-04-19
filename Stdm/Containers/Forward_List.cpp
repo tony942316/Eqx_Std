@@ -2,7 +2,7 @@ module;
 
 #include <forward_list>
 
-export module Stdm.Containers.Forward_List;
+export module Eqx.Stdm.Containers.Forward_List;
 
 // Operators
 export using std::operator==;

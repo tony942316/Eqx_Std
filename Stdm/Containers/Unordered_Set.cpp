@@ -2,7 +2,7 @@ module;
 
 #include <unordered_set>
 
-export module Stdm.Containers.Unordered_Set;
+export module Eqx.Stdm.Containers.Unordered_Set;
 
 // Operators
 export using std::operator==;

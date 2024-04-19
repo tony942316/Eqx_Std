@@ -2,7 +2,7 @@ module;
 
 #include <span>
 
-export module Stdm.Containers.Span;
+export module Eqx.Stdm.Containers.Span;
 
 export namespace stdm
 {

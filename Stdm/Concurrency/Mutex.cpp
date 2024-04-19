@@ -2,7 +2,7 @@ module;
 
 #include <mutex>
 
-export module Stdm.Concurrency.Mutex;
+export module Eqx.Stdm.Concurrency.Mutex;
 
 export namespace stdm
 {

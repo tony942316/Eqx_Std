@@ -2,7 +2,7 @@ module;
 
 #include <unordered_map>
 
-export module Stdm.Containers.Unordered_Map;
+export module Eqx.Stdm.Containers.Unordered_Map;
 
 // Operators
 export using std::operator==;

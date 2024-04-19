@@ -2,7 +2,7 @@ module;
 
 #include <numbers>
 
-export module Stdm.Numerics.Numbers;
+export module Eqx.Stdm.Numerics.Numbers;
 
 export namespace stdm::numbers
 {

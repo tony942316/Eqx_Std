@@ -2,7 +2,7 @@ module;
 
 #include <compare>
 
-export module Stdm.Utils.Compare;
+export module Eqx.Stdm.Utils.Compare;
 
 export namespace stdm
 {

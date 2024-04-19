@@ -1,3 +1,3 @@
-export module Stdm.Time;
+export module Eqx.Stdm.Time;
 
-export import Stdm.Time.Chrono;
+export import Eqx.Stdm.Time.Chrono;

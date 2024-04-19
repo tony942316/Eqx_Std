@@ -2,7 +2,7 @@ module;
 
 #include <optional>
 
-export module Stdm.Utils.Optional;
+export module Eqx.Stdm.Utils.Optional;
 
 // Operations
 export using std::operator==;

@@ -2,7 +2,7 @@ module;
 
 #include <ostream>
 
-export module Stdm.IO.OStream;
+export module Eqx.Stdm.IO.OStream;
 
 // Operators
 using std::operator<<;

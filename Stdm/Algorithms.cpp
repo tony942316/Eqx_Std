@@ -1,4 +1,4 @@
-export module Stdm.Algorithms;
+export module Eqx.Stdm.Algorithms;
 
-export import Stdm.Algorithms.Algorithm;
-export import Stdm.Algorithms.Numeric;
+export import Eqx.Stdm.Algorithms.Algorithm;
+export import Eqx.Stdm.Algorithms.Numeric;

@@ -2,7 +2,7 @@ module;
 
 #include <string_view>
 
-export module Stdm.Strings.String_View;
+export module Eqx.Stdm.Strings.String_View;
 
 // Functions
 export using std::operator==;

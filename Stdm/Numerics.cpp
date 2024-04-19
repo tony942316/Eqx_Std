@@ -1,6 +1,6 @@
-export module Stdm.Numerics;
+export module Eqx.Stdm.Numerics;
 
-export import Stdm.Numerics.CMath;
-export import Stdm.Numerics.Complex;
-export import Stdm.Numerics.Numbers;
-export import Stdm.Numerics.Random;
+export import Eqx.Stdm.Numerics.CMath;
+export import Eqx.Stdm.Numerics.Complex;
+export import Eqx.Stdm.Numerics.Numbers;
+export import Eqx.Stdm.Numerics.Random;

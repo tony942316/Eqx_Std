@@ -2,7 +2,7 @@ module;
 
 #include <cstdlib>
 
-export module Stdm.Utils.CStdLib;
+export module Eqx.Stdm.Utils.CStdLib;
 
 export namespace stdm
 {

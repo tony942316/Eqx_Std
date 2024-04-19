@@ -2,7 +2,7 @@ module;
 
 #include <initializer_list>
 
-export module Stdm.Utils.Initializer_List;
+export module Eqx.Stdm.Utils.Initializer_List;
 
 export namespace stdm
 {

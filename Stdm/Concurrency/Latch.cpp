@@ -2,7 +2,7 @@ module;
 
 #include <latch>
 
-export module Stdm.Concurrency.Latch;
+export module Eqx.Stdm.Concurrency.Latch;
 
 export namespace stdm
 {

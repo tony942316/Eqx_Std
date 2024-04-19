@@ -2,7 +2,7 @@ module;
 
 #include <queue>
 
-export module Stdm.Containers.Queue;
+export module Eqx.Stdm.Containers.Queue;
 
 // Operators
 export using std::operator==;

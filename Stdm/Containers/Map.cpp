@@ -2,7 +2,7 @@ module;
 
 #include <map>
 
-export module Stdm.Containers.Map;
+export module Eqx.Stdm.Containers.Map;
 
 // Operators
 export using std::operator==;

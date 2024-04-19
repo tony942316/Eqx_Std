@@ -2,7 +2,7 @@ module;
 
 #include <limits>
 
-export module Stdm.Utils.Limits;
+export module Eqx.Stdm.Utils.Limits;
 
 export namespace stdm
 {

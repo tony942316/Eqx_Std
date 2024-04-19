@@ -2,7 +2,7 @@ module;
 
 #include <future>
 
-export module Stdm.Concurrency.Future;
+export module Eqx.Stdm.Concurrency.Future;
 
 export namespace stdm
 {

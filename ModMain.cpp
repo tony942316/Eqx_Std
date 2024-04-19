@@ -1,4 +1,4 @@
-import Stdm;
+import Eqx.Stdm;
 
 int main()
 {

@@ -2,7 +2,7 @@ module;
 
 #include <execution>
 
-export module Stdm.Utils.Execution;
+export module Eqx.Stdm.Utils.Execution;
 
 export namespace stdm
 {

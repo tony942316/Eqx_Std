@@ -1,4 +1,4 @@
-export module Stdm.Strings;
+export module Eqx.Stdm.Strings;
 
-export import Stdm.Strings.String;
-export import Stdm.Strings.String_View;
+export import Eqx.Stdm.Strings.String;
+export import Eqx.Stdm.Strings.String_View;

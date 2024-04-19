@@ -2,7 +2,7 @@ module;
 
 #include <ranges>
 
-export module Stdm.Ranges.Ranges;
+export module Eqx.Stdm.Ranges.Ranges;
 
 export namespace stdm::ranges
 {

@@ -2,7 +2,7 @@ module;
 
 #include <deque>
 
-export module Stdm.Containers.Deque;
+export module Eqx.Stdm.Containers.Deque;
 
 // Operators
 export using std::operator==;

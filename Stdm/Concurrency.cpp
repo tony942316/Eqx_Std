@@ -1,10 +1,10 @@
-export module Stdm.Concurrency;
+export module Eqx.Stdm.Concurrency;
 
-export import Stdm.Concurrency.Atomic;
-export import Stdm.Concurrency.Barrier;
-export import Stdm.Concurrency.Condition_Variable;
-export import Stdm.Concurrency.Future;
-export import Stdm.Concurrency.Latch;
-export import Stdm.Concurrency.Mutex;
-export import Stdm.Concurrency.Semaphore;
-export import Stdm.Concurrency.Thread;
+export import Eqx.Stdm.Concurrency.Atomic;
+export import Eqx.Stdm.Concurrency.Barrier;
+export import Eqx.Stdm.Concurrency.Condition_Variable;
+export import Eqx.Stdm.Concurrency.Future;
+export import Eqx.Stdm.Concurrency.Latch;
+export import Eqx.Stdm.Concurrency.Mutex;
+export import Eqx.Stdm.Concurrency.Semaphore;
+export import Eqx.Stdm.Concurrency.Thread;

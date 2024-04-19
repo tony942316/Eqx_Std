@@ -2,7 +2,7 @@ module;
 
 #include <functional>
 
-export module Stdm.Utils.Functional;
+export module Eqx.Stdm.Utils.Functional;
 
 export namespace stdm
 {

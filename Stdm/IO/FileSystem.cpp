@@ -2,7 +2,7 @@ module;
 
 #include <filesystem>
 
-export module Stdm.IO.FileSystem;
+export module Eqx.Stdm.IO.FileSystem;
 
 export namespace stdm
 {

@@ -2,7 +2,7 @@ module;
 
 #include <cstdint>
 
-export module Stdm.Utils.CStdInt;
+export module Eqx.Stdm.Utils.CStdInt;
 
 export namespace stdm
 {

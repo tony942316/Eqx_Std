@@ -2,7 +2,7 @@ module;
 
 #include <numeric>
 
-export module Stdm.Algorithms.Numeric;
+export module Eqx.Stdm.Algorithms.Numeric;
 
 export namespace stdm
 {

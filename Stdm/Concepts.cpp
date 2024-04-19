@@ -1,3 +1,3 @@
-export module Stdm.Concepts;
+export module Eqx.Stdm.Concepts;
 
-export import Stdm.Concepts.Concepts;
+export import Eqx.Stdm.Concepts.Concepts;

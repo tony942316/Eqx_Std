@@ -2,7 +2,7 @@ module;
 
 #include <semaphore>
 
-export module Stdm.Concurrency.Semaphore;
+export module Eqx.Stdm.Concurrency.Semaphore;
 
 export namespace stdm
 {

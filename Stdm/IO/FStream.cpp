@@ -2,7 +2,7 @@ module;
 
 #include <fstream>
 
-export module Stdm.IO.FStream;
+export module Eqx.Stdm.IO.FStream;
 
 export namespace stdm
 {

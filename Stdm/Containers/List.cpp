@@ -2,7 +2,7 @@ module;
 
 #include <list>
 
-export module Stdm.Containers.List;
+export module Eqx.Stdm.Containers.List;
 
 // Operators
 export using std::operator==;

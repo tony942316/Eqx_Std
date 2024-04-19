@@ -2,7 +2,7 @@ module;
 
 #include <sstream>
 
-export module Stdm.IO.StringStream;
+export module Eqx.Stdm.IO.StringStream;
 
 export namespace stdm
 {

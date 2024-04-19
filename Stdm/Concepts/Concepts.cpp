@@ -2,7 +2,7 @@ module;
 
 #include <concepts>
 
-export module Stdm.Concepts.Concepts;
+export module Eqx.Stdm.Concepts.Concepts;
 
 export namespace stdm
 {

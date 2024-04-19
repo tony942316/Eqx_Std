@@ -1,3 +1,3 @@
-export module Stdm.Iterator;
+export module Eqx.Stdm.Iterator;
 
-export import Stdm.Iterator.Iterator;
+export import Eqx.Stdm.Iterator.Iterator;

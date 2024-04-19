@@ -2,7 +2,7 @@ module;
 
 #include <bit>
 
-export module Stdm.Utils.Bit;
+export module Eqx.Stdm.Utils.Bit;
 
 export namespace stdm
 {
