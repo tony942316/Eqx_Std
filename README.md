@@ -118,7 +118,7 @@ Stdm is organized into various submodules, the structure is as follows:
         - Source_Location
         - Utility
 
-Importing a submodules is performed like so `import Eqx.Stdm.Concurrency.Latch`,
+Importing a submodule is performed like so `import Eqx.Stdm.Concurrency.Latch`,
 you can also import the entire library `import Eqx.Stdm` or a sub library of
 the standard library `import Eqx.Stdm.Concurrency`. Stdm is exposed under the
 namespace `stdm` instead of `std`, this is to avoid affecting the `std`
@@ -135,5 +135,5 @@ the same flags, for instance if you were compiling with the `-fno-rtti` flag
 the Stdm BMI would be incompatiable with your target. Instead of adding the flag
 to your target with `target_compile_options(yourTarget PRIVATE -fno-rtti)` you
 should add the flag to the GMF target
-`target_compile_options(GMF PRIVATE -fno-rtti)` now both your target and Stdm
+`target_compile_options(GMF INTERFACE -fno-rtti)` now both your target and Stdm
 will be compiled with this flag.
