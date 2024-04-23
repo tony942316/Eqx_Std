@@ -4,6 +4,9 @@ module;
 
 export module Eqx.Stdm.IO.IOManip;
 
+export using std::operator<<;
+export using std::operator>>;
+
 export namespace stdm
 {
     // Functions
