@@ -8,6 +8,10 @@ export module Eqx.Stdm.Containers.Vector;
 export using std::operator==;
 export using std::operator<=>;
 
+#ifdef __linux__
+export using __gnu_cxx::operator==;
+#endif // __linux__
+
 export namespace stdm
 {
     // Classes

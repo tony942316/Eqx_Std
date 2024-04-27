@@ -17,12 +17,26 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     target_link_libraries(ModMain PRIVATE Stdm)
 
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-        target_compile_options(GMF INTERFACE /GR-)
+        target_compile_options(GMF INTERFACE
+            /W4 /WX
+            /GR-)
     else ()
-        target_compile_options(GMF INTERFACE -fno-rtti)
+        target_compile_options(GMF INTERFACE
+            -Wall -Wextra -Wpedantic -Wconversion -Werror
+            -fno-rtti)
     endif()
 
     set_target_properties(ModMain PROPERTIES
+        CXX_STANDARD_REQUIRED On
+        CXX_EXTENSIONS Off
+        EXPORT_COMPILE_COMMANDS On)
+
+    add_executable(Isolate)
+    target_sources(Isolate PRIVATE Isolate.cpp)
+    target_compile_features(Isolate PRIVATE cxx_std_20)
+    target_link_libraries(Isolate PRIVATE Stdm)
+
+    set_target_properties(Isolate PROPERTIES
         CXX_STANDARD_REQUIRED On
         CXX_EXTENSIONS Off
         EXPORT_COMPILE_COMMANDS On)

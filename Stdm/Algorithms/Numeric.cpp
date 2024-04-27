@@ -1,5 +1,6 @@
 module;
 
+#include <iterator>
 #include <numeric>
 
 export module Eqx.Stdm.Algorithms.Numeric;
