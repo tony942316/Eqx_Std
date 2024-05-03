@@ -7,7 +7,7 @@ export module Eqx.Stdm.Utils.CStdDef;
 export namespace stdm
 {
     // Macros
-    constexpr auto c_NULL = NULL;
+    inline constexpr auto c_NULL = NULL;
 
     // Types
     using std::size_t;
