@@ -4,6 +4,10 @@ module;
 
 export module Eqx.Stdm.Ranges.Ranges;
 
+#ifdef _MSVC_STL_UPDATE
+export using std::ranges::_Pipe::operator|;
+#endif // _MSVC_STL_UPDATE
+
 #ifdef __GLIBCXX__
 export using std::views::__adaptor::operator|;
 #endif // __GLIBCXX__
