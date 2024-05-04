@@ -4,6 +4,10 @@ module;
 
 export module Eqx.Stdm.Ranges.Ranges;
 
+#ifdef __GLIBCXX__
+export using std::views::__adaptor::operator|;
+#endif // __GLIBCXX__
+
 export namespace stdm::ranges
 {
     // Range Concepts

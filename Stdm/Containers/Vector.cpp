@@ -8,9 +8,9 @@ export module Eqx.Stdm.Containers.Vector;
 export using std::operator==;
 export using std::operator<=>;
 
-#ifdef __linux__
+#ifdef __GLIBCXX__
 export using __gnu_cxx::operator==;
-#endif // __linux__
+#endif // __GLIBCXX__
 
 export namespace stdm
 {

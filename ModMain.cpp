@@ -59,6 +59,21 @@ void precisionTest()
     stdm::cout << pi << stdm::endl;
 }
 
+void pipeTest()
+{
+    stdm::cout << "Pipe Test ->"sv << stdm::endl;
+    const auto str = "HeLlO"sv;
+    auto result = str
+        | stdm::views::transform([](const char ele)
+            {
+                return stdm::tolower(ele, stdm::locale{});
+            });
+    auto lcs = stdm::string{ stdm::ranges::cbegin(result),
+        stdm::ranges::cend(result) };
+    stdm::cout << str << stdm::endl;
+    stdm::cout << lcs << stdm::endl;
+}
+
 void allTests()
 {
     stdm::cout << c_Seperator << stdm::endl;
@@ -67,6 +82,8 @@ void allTests()
     iterTest();
     stdm::cout << c_Seperator << stdm::endl;
     precisionTest();
+    stdm::cout << c_Seperator << stdm::endl;
+    pipeTest();
     stdm::cout << c_Seperator << stdm::endl;
 
     stdm::cout << "End: ";
