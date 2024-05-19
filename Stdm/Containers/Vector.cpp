@@ -2,6 +2,11 @@ module;
 
 #include <vector>
 
+#ifdef __GLIBCXX__
+#include <string>
+#include <algorithm>
+#endif // __GLIBCXX__
+
 export module Eqx.Stdm.Containers.Vector;
 
 // Operators
@@ -10,6 +15,12 @@ export using std::operator<=>;
 
 #ifdef __GLIBCXX__
 export using __gnu_cxx::operator==;
+
+export constexpr bool operator==(const std::vector<std::string>& lhs,
+    const std::vector<std::string>& rhs) noexcept
+{
+    return std::ranges::equal(lhs, rhs);
+}
 #endif // __GLIBCXX__
 
 export namespace stdm

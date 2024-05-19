@@ -74,6 +74,41 @@ void pipeTest()
     stdm::cout << lcs << stdm::endl;
 }
 
+void strCmpTest()
+{
+    stdm::cout << "String Compare Test ->\n"sv;
+    const auto str1 = "Hello"s;
+    const auto str2 = "Hello"s;
+    stdm::cout << (str1 == str2) << '\n';
+}
+
+void vecCmpTest()
+{
+    stdm::cout << "Vector Compare Test ->\n"sv;
+    const auto vec1 = stdm::vector<int>{ 1, 2, 3 };
+    const auto vec2 = stdm::vector<int>{ 1, 2, 3 };
+    stdm::cout << (vec1 == vec2) << '\n';
+    auto vec3 = stdm::vector<stdm::string>{ "Hello"s };
+    auto vec4 = stdm::vector<stdm::string>{ "There"s };
+    [[maybe_unused]] const auto val = *vec3.begin() == *vec4.begin();
+    [[maybe_unused]] const auto val2 = (*(*vec3.begin()).begin()) == (*(*vec4.begin()).begin());
+    stdm::ranges::equal(vec3, vec4);
+    [[maybe_unused]] const auto val3 = vec3 == vec4;
+    auto vec5 = stdm::vector<stdm::vector<int>>{};
+    auto vec6 = stdm::vector<stdm::vector<int>>{};
+    [[maybe_unused]] const auto val4 = vec5 == vec6;
+    auto vec7 = stdm::vector<stdm::string>{};
+    auto vec8 = stdm::vector<stdm::string>{};
+    [[maybe_unused]] const auto val5 = stdm::ranges::equal(vec7, vec8);
+    auto vec9 = stdm::vector<stdm::pair<int, int>>{};
+    auto vec10 = stdm::vector<stdm::pair<int, int>>{};
+    [[maybe_unused]] const auto val6 = vec9 == vec10;
+    stdm::cout << (vec3 == vec4) << '\n';
+}
+
+static_assert(stdm::vector<stdm::string>{ "Hello"s }
+    == stdm::vector<stdm::string>{ "Hello"s });
+
 void allTests()
 {
     stdm::cout << c_Seperator << stdm::endl;
@@ -84,6 +119,10 @@ void allTests()
     precisionTest();
     stdm::cout << c_Seperator << stdm::endl;
     pipeTest();
+    stdm::cout << c_Seperator << stdm::endl;
+    strCmpTest();
+    stdm::cout << c_Seperator << stdm::endl;
+    vecCmpTest();
     stdm::cout << c_Seperator << stdm::endl;
 
     stdm::cout << "End: ";
