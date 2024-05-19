@@ -91,18 +91,19 @@ void vecCmpTest()
     auto vec3 = stdm::vector<stdm::string>{ "Hello"s };
     auto vec4 = stdm::vector<stdm::string>{ "There"s };
     [[maybe_unused]] const auto val = *vec3.begin() == *vec4.begin();
-    [[maybe_unused]] const auto val2 = (*(*vec3.begin()).begin()) == (*(*vec4.begin()).begin());
-    stdm::ranges::equal(vec3, vec4);
-    [[maybe_unused]] const auto val3 = vec3 == vec4;
+    [[maybe_unused]] const auto val2 =
+        (*(*vec3.begin()).begin()) == (*(*vec4.begin()).begin());
+    [[maybe_unused]] const auto val3 = stdm::ranges::equal(vec3, vec4);
+    [[maybe_unused]] const auto val4 = vec3 == vec4;
     auto vec5 = stdm::vector<stdm::vector<int>>{};
     auto vec6 = stdm::vector<stdm::vector<int>>{};
-    [[maybe_unused]] const auto val4 = vec5 == vec6;
+    [[maybe_unused]] const auto val5 = vec5 == vec6;
     auto vec7 = stdm::vector<stdm::string>{};
     auto vec8 = stdm::vector<stdm::string>{};
-    [[maybe_unused]] const auto val5 = stdm::ranges::equal(vec7, vec8);
+    [[maybe_unused]] const auto val6 = stdm::ranges::equal(vec7, vec8);
     auto vec9 = stdm::vector<stdm::pair<int, int>>{};
     auto vec10 = stdm::vector<stdm::pair<int, int>>{};
-    [[maybe_unused]] const auto val6 = vec9 == vec10;
+    [[maybe_unused]] const auto val7 = vec9 == vec10;
     stdm::cout << (vec3 == vec4) << '\n';
 }
 
