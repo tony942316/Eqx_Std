@@ -37,6 +37,7 @@ target_sources(Stdm
             IO/FileSystem.cpp
             IO/FStream.cpp
             IO/IOManip.cpp
+            IO/IOS.cpp
             IO/IOStream.cpp
             IO/IStream.cpp
             IO/OStream.cpp
