@@ -20,6 +20,39 @@ export using std::chrono::operator<=>;
 
 export using std::chrono::operator<<;
 
+#ifdef __GLIBCXX__
+export inline std::ostream& operator<<(std::ostream& ostrm,
+    const std::chrono::nanoseconds& dur) noexcept
+{
+    return std::chrono::operator<<(ostrm, dur);
+}
+export inline std::ostream& operator<<(std::ostream& ostrm,
+    const std::chrono::milliseconds& dur) noexcept
+{
+    return std::chrono::operator<<(ostrm, dur);
+}
+export inline std::ostream& operator<<(std::ostream& ostrm,
+    const std::chrono::microseconds& dur) noexcept
+{
+    return std::chrono::operator<<(ostrm, dur);
+}
+export inline std::ostream& operator<<(std::ostream& ostrm,
+    const std::chrono::seconds& dur) noexcept
+{
+    return std::chrono::operator<<(ostrm, dur);
+}
+export inline std::ostream& operator<<(std::ostream& ostrm,
+    const std::chrono::minutes& dur) noexcept
+{
+    return std::chrono::operator<<(ostrm, dur);
+}
+export inline std::ostream& operator<<(std::ostream& ostrm,
+    const std::chrono::hours& dur) noexcept
+{
+    return std::chrono::operator<<(ostrm, dur);
+}
+#endif // __GLIBCXX__
+
 export using std::chrono::operator""h;
 export using std::chrono::operator""min;
 export using std::chrono::operator""s;

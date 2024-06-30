@@ -107,6 +107,20 @@ void vecCmpTest()
     stdm::cout << (vec3 == vec4) << '\n';
 }
 
+void durationPrintTest()
+{
+    constexpr auto nano = 1'000ns;
+    constexpr auto micro = 1'000us;
+    constexpr auto milli = 1'000ms;
+    constexpr auto seconds = 1'000s;
+    constexpr auto minutes = 1'000min;
+    stdm::cout << nano << stdm::endl;
+    stdm::cout << micro << stdm::endl;
+    stdm::cout << milli << stdm::endl;
+    stdm::cout << seconds << stdm::endl;
+    stdm::cout << minutes << stdm::endl;
+}
+
 static_assert(stdm::vector<stdm::string>{ "Hello"s }
     == stdm::vector<stdm::string>{ "Hello"s });
 
@@ -124,6 +138,8 @@ void allTests()
     strCmpTest();
     stdm::cout << c_Seperator << stdm::endl;
     vecCmpTest();
+    stdm::cout << c_Seperator << stdm::endl;
+    durationPrintTest();
     stdm::cout << c_Seperator << stdm::endl;
 
     stdm::cout << "End: ";
