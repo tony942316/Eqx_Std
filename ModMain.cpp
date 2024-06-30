@@ -119,6 +119,10 @@ void durationPrintTest()
     stdm::cout << milli << stdm::endl;
     stdm::cout << seconds << stdm::endl;
     stdm::cout << minutes << stdm::endl;
+    auto xxx = stdm::stringstream{};
+    stdm::cout << (xxx << micro).rdbuf() << stdm::endl;
+    stdm::cout << (stdm::stringstream{} << micro).str() << stdm::endl;
+    stdm::cout << (stdm::stringstream{} << milli).str() << stdm::endl;
 }
 
 static_assert(stdm::vector<stdm::string>{ "Hello"s }

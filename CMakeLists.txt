@@ -22,7 +22,8 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
             /GR-)
     else ()
         target_compile_options(GMF INTERFACE
-            -Wall -Wextra -Wpedantic -Wconversion -Werror
+            -Wall -Wextra -Wpedantic -Wconversion -Wno-deprecated-declarations
+            -Werror
             -fno-rtti)
     endif()
 
