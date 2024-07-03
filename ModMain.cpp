@@ -120,8 +120,8 @@ void durationPrintTest()
     stdm::cout << seconds << stdm::endl;
     stdm::cout << minutes << stdm::endl;
     auto xxx = stdm::stringstream{};
-    stdm::cout << (xxx << micro).str() << stdm::endl;
-    stdm::cout << (xxx << micro << milli).str() << stdm::endl;
+    stdm::cout << (xxx << micro).rdbuf() << stdm::endl;
+    stdm::cout << (xxx << micro << milli).rdbuf() << stdm::endl;
     stdm::cout << (stdm::stringstream{} << micro).str() << stdm::endl;
     stdm::cout << (stdm::stringstream{} << milli).str() << stdm::endl;
     stdm::cout << (stdm::stringstream{} << 1'000us).str() << stdm::endl;
