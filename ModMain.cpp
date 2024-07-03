@@ -129,6 +129,7 @@ void durationPrintTest()
 
 static_assert(stdm::vector<stdm::string>{ "Hello"s }
     == stdm::vector<stdm::string>{ "Hello"s });
+static_assert(stdm::same_as<stdm::make_signed_t<unsigned int>, int>);
 
 void allTests()
 {

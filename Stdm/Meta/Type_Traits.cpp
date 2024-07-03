@@ -207,7 +207,12 @@ export namespace stdm
 
     // Sign Modifiers
     using std::make_signed;
+#ifdef _MSC_VER
+    template <typename T>
+    using make_signed_t = typename std::make_signed<T>::type;
+#else
     using std::make_signed_t;
+#endif // _MSC_VER
     using std::make_unsigned;
     using std::make_unsigned_t;
 
