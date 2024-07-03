@@ -21,81 +21,16 @@ export using std::chrono::operator<=>;
 export using std::chrono::operator<<;
 
 #ifdef __GLIBCXX__
-export template <typename Rep, typename Period>
-std::stringstream operator<< (std::stringstream&& sos,
+export template <typename CharT, typename Traits, typename Rep, typename Period>
+std::basic_stringstream<CharT, Traits>
+    operator<< (const std::basic_stringstream<CharT, Traits>& sos,
     const std::chrono::duration<Rep, Period>& dur) noexcept
 {
-    auto sss = std::stringstream{};
-    sss << (sos << dur).rdbuf();
-    return sss;
+    //NOLINTBEGIN(cppcoreguidelines-pro-type-const-cast)
+    return std::move(const_cast<std::basic_stringstream<CharT, Traits>&>(sos))
+        << dur;
+    //NOLINTEND(cppcoreguidelines-pro-type-const-cast)
 }
-
-/*
-export inline std::stringstream operator<< (std::stringstream&& sos,
-    const std::chrono::microseconds& dur) noexcept
-{
-    auto sss = std::stringstream{};
-    sss << (sos << dur).rdbuf();
-    return sss;
-}
-
-export inline std::stringstream operator<< (std::stringstream&& sos,
-    const std::chrono::milliseconds& dur) noexcept
-{
-    auto sss = std::stringstream{};
-    sss << (sos << dur).rdbuf();
-    return sss;
-}
-export template<class CharT, class Traits>
-std::basic_ostream<CharT, Traits>&
-    operator<< (std::basic_ostream<CharT, Traits>& ostr,
-                [[maybe_unused]] const std::chrono::nanoseconds& dur)
-{
-    return std::chrono::operator<<(ostr, dur);
-}
-export template<class CharT, class Traits, class Rep, class Period>
-std::basic_ostream<CharT, Traits>&
-    operator<< (std::basic_ostream<CharT, Traits>& ostr,
-                const std::chrono::duration<Rep, Period>& dur)
-{
-    return std::chrono::operator<<(ostr, dur);
-}
-export template <typename T>
-std::basic_stringstream<T>&& operator<< (std::basic_stringstream<T>&& ostrm,
-    const std::chrono::nanoseconds& dur) noexcept
-{
-    return std::chrono::operator<<(ostrm, dur);
-}
-export inline std::ostream& operator<<(std::ostream&& ostrm,
-    const std::chrono::nanoseconds& dur) noexcept
-{
-    return std::chrono::operator<<(ostrm, dur);
-}
-export inline std::ostream& operator<<(std::ostream&& ostrm,
-    const std::chrono::milliseconds& dur) noexcept
-{
-    return std::chrono::operator<<(ostrm, dur);
-}
-export inline std::ostream& operator<<(std::ostream&& ostrm,
-    const std::chrono::microseconds& dur) noexcept
-{
-    return std::chrono::operator<<(ostrm, dur);
-}
-export inline std::ostream& operator<<(std::ostream&& ostrm,
-    const std::chrono::seconds& dur) noexcept
-{
-    return std::chrono::operator<<(ostrm, dur);
-}
-export inline std::ostream& operator<<(std::ostream&& ostrm,
-    const std::chrono::minutes& dur) noexcept
-{
-    return std::chrono::operator<<(ostrm, dur);
-}
-export inline std::ostream& operator<<(std::ostream&& ostrm,
-    const std::chrono::hours& dur) noexcept
-{
-    return std::chrono::operator<<(ostrm, dur);
-}*/
 #endif // __GLIBCXX__
 
 export using std::chrono::operator""h;
