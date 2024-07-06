@@ -22,13 +22,14 @@ export using std::chrono::operator<<;
 
 #ifdef __GLIBCXX__
 export template <typename CharT, typename Traits, typename Rep, typename Period>
-std::basic_stringstream<CharT, Traits>
+std::basic_stringstream<CharT, Traits>&
     operator<< (const std::basic_stringstream<CharT, Traits>& sos,
     const std::chrono::duration<Rep, Period>& dur) noexcept
 {
     //NOLINTBEGIN(cppcoreguidelines-pro-type-const-cast)
-    return std::move(const_cast<std::basic_stringstream<CharT, Traits>&>(sos))
+    const_cast<std::basic_stringstream<CharT, Traits>&&>(sos)
         << dur;
+    return const_cast<std::basic_stringstream<CharT, Traits>&>(sos);
     //NOLINTEND(cppcoreguidelines-pro-type-const-cast)
 }
 #endif // __GLIBCXX__
