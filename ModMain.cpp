@@ -1,4 +1,5 @@
 import Eqx.Stdm;
+import Foo.Mod;
 
 constexpr auto c_Seperator = "***********************"sv;
 
@@ -127,27 +128,35 @@ void durationPrintTest()
     stdm::cout << (stdm::stringstream{} << 1'000us).str() << stdm::endl;
 }
 
+void sleepTest()
+{
+    stdm::cout << "Sleeping..." << stdm::endl;
+    stdm::this_thread::sleep_for(1'000ms);
+    stdm::cout << "Awake!" << stdm::endl;
+    foo::func();
+}
+
 static_assert(stdm::vector<stdm::string>{ "Hello"s }
     == stdm::vector<stdm::string>{ "Hello"s });
 static_assert(stdm::same_as<stdm::make_signed_t<unsigned int>, int>);
 
-void allTests()
+void runTest(void (*func)()) noexcept
 {
     stdm::cout << c_Seperator << stdm::endl;
-    basicTest();
+    func();
     stdm::cout << c_Seperator << stdm::endl;
-    iterTest();
-    stdm::cout << c_Seperator << stdm::endl;
-    precisionTest();
-    stdm::cout << c_Seperator << stdm::endl;
-    pipeTest();
-    stdm::cout << c_Seperator << stdm::endl;
-    strCmpTest();
-    stdm::cout << c_Seperator << stdm::endl;
-    vecCmpTest();
-    stdm::cout << c_Seperator << stdm::endl;
-    durationPrintTest();
-    stdm::cout << c_Seperator << stdm::endl;
+}
+
+void allTests()
+{
+    runTest(basicTest);
+    runTest(iterTest);
+    runTest(precisionTest);
+    runTest(pipeTest);
+    runTest(strCmpTest);
+    runTest(vecCmpTest);
+    runTest(durationPrintTest);
+    runTest(sleepTest);
 
     stdm::cout << "End: ";
     stdm::cin.get();

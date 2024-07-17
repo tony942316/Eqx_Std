@@ -11,10 +11,23 @@ add_subdirectory(Stdm)
 add_subdirectory(StdHeader)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    add_library(FooMod STATIC)
+    target_sources(FooMod
+        PUBLIC FILE_SET CXX_MODULES FILES
+            FooMod.cpp)
+
+    target_compile_features(FooMod PUBLIC cxx_std_20)
+    target_link_libraries(FooMod PUBLIC Stdm)
+
+    set_target_properties(FooMod PROPERTIES
+        CXX_STANDARD_REQUIRED On
+        CXX_EXTENSIONS Off
+        EXPORT_COMPILE_COMMANDS On)
+
     add_executable(ModMain)
     target_sources(ModMain PRIVATE ModMain.cpp)
     target_compile_features(ModMain PRIVATE cxx_std_20)
-    target_link_libraries(ModMain PRIVATE Stdm)
+    target_link_libraries(ModMain PRIVATE FooMod)
 
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         target_compile_options(GMF INTERFACE
