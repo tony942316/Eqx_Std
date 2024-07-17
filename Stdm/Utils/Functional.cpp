@@ -65,7 +65,35 @@ export namespace stdm
 export namespace stdm::ranges
 {
     // Concept-Constrained Comparisons
+#ifndef _MSC_VER
     using std::ranges::equal_to;
+#endif // _MSC_VER
+
+#ifdef _MSC_VER
+    template <class _Ty = void>
+    struct equal_to {
+        using _FIRST_ARGUMENT_TYPE_NAME _CXX17_DEPRECATE_ADAPTOR_TYPEDEFS  = _Ty;
+        using _SECOND_ARGUMENT_TYPE_NAME _CXX17_DEPRECATE_ADAPTOR_TYPEDEFS = _Ty;
+        using _RESULT_TYPE_NAME _CXX17_DEPRECATE_ADAPTOR_TYPEDEFS          = bool;
+
+        _NODISCARD constexpr bool operator()(const _Ty& _Left, const _Ty& _Right) const
+            noexcept(noexcept(_STD _Fake_copy_init<bool>(_Left == _Right))) /* strengthened */ {
+            return _Left == _Right;
+        }
+    };
+
+    template <>
+    struct equal_to<void> {
+        template <class _Ty1, class _Ty2>
+        _NODISCARD constexpr auto operator()(_Ty1&& _Left, _Ty2&& _Right) const
+            noexcept(noexcept(static_cast<_Ty1&&>(_Left) == static_cast<_Ty2&&>(_Right))) // strengthened
+            -> decltype(static_cast<_Ty1&&>(_Left) == static_cast<_Ty2&&>(_Right)) {
+            return static_cast<_Ty1&&>(_Left) == static_cast<_Ty2&&>(_Right);
+        }
+
+        using is_transparent = int;
+    };
+#endif // _MSC_VER
     using std::ranges::not_equal_to;
     using std::ranges::greater;
     using std::ranges::less;

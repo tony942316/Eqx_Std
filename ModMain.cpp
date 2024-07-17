@@ -136,6 +136,14 @@ void sleepTest()
     foo::func();
 }
 
+void equalTest()
+{
+    stdm::cout << "Hello Server == Hello Server: "sv
+        << stdm::ranges::equal_to{}("Hello Server"s, "Hello Server"s)
+        << stdm::endl;
+    foo::equal();
+}
+
 static_assert(stdm::vector<stdm::string>{ "Hello"s }
     == stdm::vector<stdm::string>{ "Hello"s });
 static_assert(stdm::same_as<stdm::make_signed_t<unsigned int>, int>);
@@ -157,6 +165,7 @@ void allTests()
     runTest(vecCmpTest);
     runTest(durationPrintTest);
     runTest(sleepTest);
+    runTest(equalTest);
 
     stdm::cout << "End: ";
     stdm::cin.get();
