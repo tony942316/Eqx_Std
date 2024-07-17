@@ -133,7 +133,7 @@ void sleepTest()
     stdm::cout << "Sleeping..." << stdm::endl;
     stdm::this_thread::sleep_for(1'000ms);
     stdm::cout << "Awake!" << stdm::endl;
-    foo::func();
+    foo::sleep();
 }
 
 void equalTest()
