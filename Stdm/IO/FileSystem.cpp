@@ -70,3 +70,33 @@ export namespace stdm::filesystem
     using std::filesystem::is_symlink;
     using std::filesystem::status_known;
 }
+
+#ifdef __GLIBCXX__
+export namespace std::filesystem
+{
+    stdm::filesystem::directory_iterator begin(
+        stdm::filesystem::directory_iterator& iter) noexcept
+    {
+        return iter;
+    }
+
+    stdm::filesystem::directory_iterator end(
+        [[maybe_unused]] stdm::filesystem::directory_iterator& iter) noexcept
+    {
+        return stdm::filesystem::directory_iterator{};
+    }
+
+    stdm::filesystem::recursive_directory_iterator begin(
+        stdm::filesystem::recursive_directory_iterator& iter) noexcept
+    {
+        return iter;
+    }
+
+    stdm::filesystem::recursive_directory_iterator end(
+        [[maybe_unused]] stdm::filesystem::recursive_directory_iterator& iter)
+        noexcept
+    {
+        return stdm::filesystem::recursive_directory_iterator{};
+    }
+}
+#endif // __GLIBCXX__

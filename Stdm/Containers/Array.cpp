@@ -10,8 +10,11 @@ export using std::operator<=>;
 
 export namespace stdm
 {
+    template <typename T, std::size_t U>
+    using array = std::array<T, U>;
+
     // Classes
-    using std::array;
+    //using std::array;
     using std::tuple_size;
     using std::tuple_element;
 

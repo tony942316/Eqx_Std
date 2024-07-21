@@ -128,6 +128,13 @@ void durationPrintTest()
     stdm::cout << (stdm::stringstream{} << 1'000us).str() << stdm::endl;
 }
 
+void filePrintTest()
+{
+    auto file = stdm::fstream{"Test.txt"};
+    stdm::cout << file.rdbuf() << stdm::endl;
+    foo::filePrint();
+}
+
 void sleepTest()
 {
     stdm::cout << "Sleeping..." << stdm::endl;
@@ -142,6 +149,40 @@ void equalTest()
         << stdm::ranges::equal_to{}("Hello Server"s, "Hello Server"s)
         << stdm::endl;
     foo::equal();
+}
+
+void fileSystemIterTest()
+{
+    auto path = stdm::filesystem::path{"./"};
+    auto dir = stdm::filesystem::directory_iterator{path};
+    auto rDir = stdm::filesystem::recursive_directory_iterator{path};
+    auto beg = stdm::ranges::begin(dir);
+    auto rBeg = stdm::ranges::begin(rDir);
+
+    auto ss = stdm::stringstream{};
+
+    stdm::cout << "Directory Iterator...\n";
+    for (const auto& entry : dir)
+    {
+        ss << entry.path() << stdm::endl;
+    }
+
+    stdm::ranges::for_each(dir, [&ss](const auto& entry)
+        {
+            ss << entry.path() << stdm::endl;
+        });
+
+    stdm::cout << "Recursive Directory Iterator...\n";
+    for (const auto& entry : rDir)
+    {
+        ss << entry.path() << stdm::endl;
+    }
+
+    rDir = stdm::filesystem::recursive_directory_iterator{path};
+    stdm::ranges::for_each(rDir, [&ss](const auto& entry)
+        {
+            ss << entry.path() << stdm::endl;
+        });
 }
 
 static_assert(stdm::vector<stdm::string>{ "Hello"s }
@@ -164,8 +205,10 @@ void allTests()
     runTest(strCmpTest);
     runTest(vecCmpTest);
     runTest(durationPrintTest);
+    runTest(filePrintTest);
     runTest(sleepTest);
     runTest(equalTest);
+    runTest(fileSystemIterTest);
 
     stdm::cout << "End: ";
     stdm::cin.get();

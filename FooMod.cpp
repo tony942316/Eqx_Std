@@ -4,6 +4,13 @@ import Eqx.Stdm;
 
 export namespace foo
 {
+    inline void filePrint() noexcept
+    {
+        stdm::cout << "Print File In Module..." << stdm::endl;
+        auto file = stdm::fstream{"Test.txt"};
+        stdm::cout << file.rdbuf() << stdm::endl;
+    }
+
     inline void sleep() noexcept
     {
         stdm::cout << "Sleeping In Module..." << stdm::endl;
