@@ -2,9 +2,9 @@ export module Eqx.Stdm.Utils;
 
 export import Eqx.Stdm.Utils.Bit;
 export import Eqx.Stdm.Utils.Compare;
-export import Eqx.Stdm.Utils.CStdDef;
-export import Eqx.Stdm.Utils.CStdInt;
-export import Eqx.Stdm.Utils.CStdLib;
+//export import Eqx.Stdm.Utils.CStdDef;
+//export import Eqx.Stdm.Utils.CStdInt;
+//export import Eqx.Stdm.Utils.CStdLib;
 export import Eqx.Stdm.Utils.Exception;
 export import Eqx.Stdm.Utils.Execution;
 export import Eqx.Stdm.Utils.Functional;

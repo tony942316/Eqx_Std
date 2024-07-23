@@ -2,26 +2,28 @@ export module Foo.Mod;
 
 import Eqx.Stdm;
 
+using namespace std::literals;
+
 export namespace foo
 {
     inline void filePrint() noexcept
     {
-        stdm::cout << "Print File In Module..." << stdm::endl;
-        auto file = stdm::fstream{"Test.txt"};
-        stdm::cout << file.rdbuf() << stdm::endl;
+        std::cout << "Print File In Module..." << std::endl;
+        auto file = std::fstream{"Test.txt"};
+        std::cout << file.rdbuf() << std::endl;
     }
 
     inline void sleep() noexcept
     {
-        stdm::cout << "Sleeping In Module..." << stdm::endl;
-        stdm::this_thread::sleep_for(1'000ms);
-        stdm::cout << "Module Awake!" << stdm::endl;
+        std::cout << "Sleeping In Module..." << std::endl;
+        std::this_thread::sleep_for(1'000ms);
+        std::cout << "Module Awake!" << std::endl;
     }
 
     inline void equal() noexcept
     {
-        stdm::cout << "Hello Module == Hello Module: "sv
-            << stdm::ranges::equal_to{}("Hello Module"s, "Hello Module"s)
-            << stdm::endl;
+        std::cout << "Hello Module == Hello Module: "sv
+            << std::ranges::equal_to{}("Hello Module"s, "Hello Module"s)
+            << std::endl;
     }
 }

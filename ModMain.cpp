@@ -1,111 +1,112 @@
 import Eqx.Stdm;
-import Foo.Mod;
+
+using namespace std::literals;
 
 constexpr auto c_Seperator = "***********************"sv;
 
 void basicTest()
 {
-    stdm::cout << "Basic Test ->"sv << stdm::endl;
-    auto vec = stdm::vector<int>{ 1, 2, 3 };
-    stdm::cout << "Vec: "sv;
-    stdm::ranges::for_each(vec, [](int ele)
-        { stdm::cout << ele << ' '; });
-    stdm::cout << stdm::endl;
+    std::cout << "Basic Test ->"sv << std::endl;
+    auto vec = std::vector<int>{ 1, 2, 3 };
+    std::cout << "Vec: "sv;
+    std::ranges::for_each(vec, [](int ele)
+        { std::cout << ele << ' '; });
+    std::cout << std::endl;
 }
 
 void iterTest()
 {
-    stdm::cout << "Iter Test ->"sv << stdm::endl;
-    auto vec = stdm::vector<int>{ 1, 2, 3 };
+    std::cout << "Iter Test ->"sv << std::endl;
+    auto vec = std::vector<int>{ 1, 2, 3 };
     auto val = vec.begin();
     [[maybe_unused]] auto val2 = vec.end();
-    [[maybe_unused]] auto vvv1 = stdm::begin(vec) == stdm::end(vec);
+    [[maybe_unused]] auto vvv1 = std::begin(vec) == std::end(vec);
     [[maybe_unused]] auto vvv2 = val == (val + 1);
     [[maybe_unused]] auto vvv3 = vec.begin() == vec.end();
     for (auto iter = vec.begin(); iter != vec.end(); iter++)
     {
 
     }
-    stdm::cout << "Vector: { "sv;
+    std::cout << "Vector: { "sv;
     for (int ele : vec)
     {
-        stdm::cout << ele << " "sv;
+        std::cout << ele << " "sv;
     }
-    stdm::cout << "}"sv << stdm::endl;
-    auto acc = stdm::accumulate(stdm::ranges::begin(vec),
-        stdm::ranges::end(vec), int{});
-    auto red = stdm::reduce(vec.begin(), vec.end());
-    auto str = stdm::transform_reduce(vec.cbegin() + 1, vec.cend(),
-        "{ "s + stdm::to_string(vec.front()),
-        [](const stdm::string& left, const stdm::string& right)
+    std::cout << "}"sv << std::endl;
+    auto acc = std::accumulate(std::ranges::begin(vec),
+        std::ranges::end(vec), int{});
+    auto red = std::reduce(vec.begin(), vec.end());
+    auto str = std::transform_reduce(vec.cbegin() + 1, vec.cend(),
+        "{ "s + std::to_string(vec.front()),
+        [](const std::string& left, const std::string& right)
         {
             return left + ", "s + right;
         },
         [](int val)
         {
-            return stdm::to_string(val);
+            return std::to_string(val);
         }) + " }"s;
 
-    stdm::cout << "stdm::accumulate: "sv << acc << stdm::endl;
-    stdm::cout << "stdm::reduce: "sv << red << stdm::endl;
-    stdm::cout << "stdm::transform_reduce: "sv << str << stdm::endl;
+    std::cout << "std::accumulate: "sv << acc << std::endl;
+    std::cout << "std::reduce: "sv << red << std::endl;
+    std::cout << "std::transform_reduce: "sv << str << std::endl;
 }
 
 void precisionTest()
 {
-    stdm::cout << "Precision Test ->"sv << stdm::endl;
-    constexpr auto pi = stdm::numbers::pi_v<long double>; // NOLINT
-    stdm::cout << pi << stdm::endl;
-    stdm::cout << stdm::setprecision(20); // NOLINT
-    stdm::cout << pi << stdm::endl;
+    std::cout << "Precision Test ->"sv << std::endl;
+    constexpr auto pi = std::numbers::pi_v<long double>; // NOLINT
+    std::cout << pi << std::endl;
+    std::cout << std::setprecision(20); // NOLINT
+    std::cout << pi << std::endl;
 }
 
 void pipeTest()
 {
-    stdm::cout << "Pipe Test ->"sv << stdm::endl;
+    std::cout << "Pipe Test ->"sv << std::endl;
     const auto str = "HeLlO"sv;
     auto result = str
-        | stdm::views::transform([](const char ele)
+        | std::views::transform([](const char ele)
             {
-                return stdm::tolower(ele, stdm::locale{});
+                return std::tolower(ele, std::locale{});
             });
-    auto lcs = stdm::string{ stdm::ranges::cbegin(result),
-        stdm::ranges::cend(result) };
-    stdm::cout << str << stdm::endl;
-    stdm::cout << lcs << stdm::endl;
+    auto lcs = std::string{ std::ranges::cbegin(result),
+        std::ranges::cend(result) };
+    std::cout << str << std::endl;
+    std::cout << lcs << std::endl;
 }
 
 void strCmpTest()
 {
-    stdm::cout << "String Compare Test ->\n"sv;
+    std::cout << "String Compare Test ->\n"sv;
     const auto str1 = "Hello"s;
     const auto str2 = "Hello"s;
-    stdm::cout << (str1 == str2) << '\n';
+    std::cout << (str1 == str2) << '\n';
 }
 
 void vecCmpTest()
 {
-    stdm::cout << "Vector Compare Test ->\n"sv;
-    const auto vec1 = stdm::vector<int>{ 1, 2, 3 };
-    const auto vec2 = stdm::vector<int>{ 1, 2, 3 };
-    stdm::cout << (vec1 == vec2) << '\n';
-    auto vec3 = stdm::vector<stdm::string>{ "Hello"s };
-    auto vec4 = stdm::vector<stdm::string>{ "There"s };
+    std::cout << "Vector Compare Test ->\n"sv;
+    const auto vec1 = std::vector<int>{ 1, 2, 3 };
+    const auto vec2 = std::vector<int>{ 1, 2, 3 };
+    std::cout << (vec1 == vec2) << '\n';
+    auto vec3 = std::vector<std::string>{ "Hello"s };
+    auto vec4 = std::vector<std::string>{ "There"s };
     [[maybe_unused]] const auto val = *vec3.begin() == *vec4.begin();
     [[maybe_unused]] const auto val2 =
         (*(*vec3.begin()).begin()) == (*(*vec4.begin()).begin());
-    [[maybe_unused]] const auto val3 = stdm::ranges::equal(vec3, vec4);
+    [[maybe_unused]] const auto val3 = std::ranges::equal(vec3, vec4);
     [[maybe_unused]] const auto val4 = vec3 == vec4;
-    auto vec5 = stdm::vector<stdm::vector<int>>{};
-    auto vec6 = stdm::vector<stdm::vector<int>>{};
+    auto vec5 = std::vector<std::vector<int>>{};
+    auto vec6 = std::vector<std::vector<int>>{};
     [[maybe_unused]] const auto val5 = vec5 == vec6;
-    auto vec7 = stdm::vector<stdm::string>{};
-    auto vec8 = stdm::vector<stdm::string>{};
-    [[maybe_unused]] const auto val6 = stdm::ranges::equal(vec7, vec8);
-    auto vec9 = stdm::vector<stdm::pair<int, int>>{};
-    auto vec10 = stdm::vector<stdm::pair<int, int>>{};
+    auto vec7 = std::vector<std::string>{};
+    auto vec8 = std::vector<std::string>{};
+    [[maybe_unused]] const auto val6 = std::ranges::equal(vec7, vec8);
+    auto vec9 = std::vector<std::pair<int, int>>{};
+    auto vec10 = std::vector<std::pair<int, int>>{};
     [[maybe_unused]] const auto val7 = vec9 == vec10;
-    stdm::cout << (vec3 == vec4) << '\n';
+    std::cout << (vec3 == vec4) << '\n';
 }
 
 void durationPrintTest()
@@ -115,85 +116,85 @@ void durationPrintTest()
     constexpr auto milli = 1'000ms;
     constexpr auto seconds = 1'000s;
     constexpr auto minutes = 1'000min;
-    stdm::cout << nano << stdm::endl;
-    stdm::cout << micro << stdm::endl;
-    stdm::cout << milli << stdm::endl;
-    stdm::cout << seconds << stdm::endl;
-    stdm::cout << minutes << stdm::endl;
-    auto xxx = stdm::stringstream{};
-    stdm::cout << (xxx << micro).rdbuf() << stdm::endl;
-    stdm::cout << (xxx << micro << milli).rdbuf() << stdm::endl;
-    stdm::cout << (stdm::stringstream{} << micro).str() << stdm::endl;
-    stdm::cout << (stdm::stringstream{} << milli).str() << stdm::endl;
-    stdm::cout << (stdm::stringstream{} << 1'000us).str() << stdm::endl;
+    std::cout << nano << std::endl;
+    std::cout << micro << std::endl;
+    std::cout << milli << std::endl;
+    std::cout << seconds << std::endl;
+    std::cout << minutes << std::endl;
+    auto xxx = std::stringstream{};
+    std::cout << (xxx << micro).rdbuf() << std::endl;
+    std::cout << (xxx << micro << milli).rdbuf() << std::endl;
+    std::cout << (std::stringstream{} << micro).str() << std::endl;
+    std::cout << (std::stringstream{} << milli).str() << std::endl;
+    std::cout << (std::stringstream{} << 1'000us).str() << std::endl;
 }
 
 void filePrintTest()
 {
-    auto file = stdm::fstream{"Test.txt"};
-    stdm::cout << file.rdbuf() << stdm::endl;
-    foo::filePrint();
+    auto file = std::fstream{"Test.txt"};
+    std::cout << file.rdbuf() << std::endl;
+    //foo::filePrint();
 }
 
 void sleepTest()
 {
-    stdm::cout << "Sleeping..." << stdm::endl;
-    stdm::this_thread::sleep_for(1'000ms);
-    stdm::cout << "Awake!" << stdm::endl;
-    foo::sleep();
+    std::cout << "Sleeping..." << std::endl;
+    std::this_thread::sleep_for(1'000ms);
+    std::cout << "Awake!" << std::endl;
+    //foo::sleep();
 }
 
 void equalTest()
 {
-    stdm::cout << "Hello Server == Hello Server: "sv
-        << stdm::ranges::equal_to{}("Hello Server"s, "Hello Server"s)
-        << stdm::endl;
-    foo::equal();
+    std::cout << "Hello Server == Hello Server: "sv
+        << std::ranges::equal_to{}("Hello Server"s, "Hello Server"s)
+        << std::endl;
+    //foo::equal();
 }
 
 void fileSystemIterTest()
 {
-    auto path = stdm::filesystem::path{"./"};
-    auto dir = stdm::filesystem::directory_iterator{path};
-    auto rDir = stdm::filesystem::recursive_directory_iterator{path};
-    auto beg = stdm::ranges::begin(dir);
-    auto rBeg = stdm::ranges::begin(rDir);
+    auto path = std::filesystem::path{"./"};
+    auto dir = std::filesystem::directory_iterator{path};
+    auto rDir = std::filesystem::recursive_directory_iterator{path};
+    auto beg = std::ranges::begin(dir);
+    auto rBeg = std::ranges::begin(rDir);
 
-    auto ss = stdm::stringstream{};
+    auto ss = std::stringstream{};
 
-    stdm::cout << "Directory Iterator...\n";
+    std::cout << "Directory Iterator...\n";
     for (const auto& entry : dir)
     {
-        ss << entry.path() << stdm::endl;
+        ss << entry.path() << std::endl;
     }
 
-    stdm::ranges::for_each(dir, [&ss](const auto& entry)
+    std::ranges::for_each(dir, [&ss](const auto& entry)
         {
-            ss << entry.path() << stdm::endl;
+            ss << entry.path() << std::endl;
         });
 
-    stdm::cout << "Recursive Directory Iterator...\n";
+    std::cout << "Recursive Directory Iterator...\n";
     for (const auto& entry : rDir)
     {
-        ss << entry.path() << stdm::endl;
+        ss << entry.path() << std::endl;
     }
 
-    rDir = stdm::filesystem::recursive_directory_iterator{path};
-    stdm::ranges::for_each(rDir, [&ss](const auto& entry)
+    rDir = std::filesystem::recursive_directory_iterator{path};
+    std::ranges::for_each(rDir, [&ss](const auto& entry)
         {
-            ss << entry.path() << stdm::endl;
+            ss << entry.path() << std::endl;
         });
 }
 
-static_assert(stdm::vector<stdm::string>{ "Hello"s }
-    == stdm::vector<stdm::string>{ "Hello"s });
-static_assert(stdm::same_as<stdm::make_signed_t<unsigned int>, int>);
+static_assert(std::vector<std::string>{ "Hello"s }
+    == std::vector<std::string>{ "Hello"s });
+static_assert(std::same_as<std::make_signed_t<unsigned int>, int>);
 
 void runTest(void (*func)()) noexcept
 {
-    stdm::cout << c_Seperator << stdm::endl;
+    std::cout << c_Seperator << std::endl;
     func();
-    stdm::cout << c_Seperator << stdm::endl;
+    std::cout << c_Seperator << std::endl;
 }
 
 void allTests()
@@ -210,12 +211,12 @@ void allTests()
     runTest(equalTest);
     runTest(fileSystemIterTest);
 
-    stdm::cout << "End: ";
-    stdm::cin.get();
+    std::cout << "End: ";
+    std::cin.get();
 }
 
 int main()
 {
     allTests();
-    return stdm::Exit_Success;
+    return 0;
 }
