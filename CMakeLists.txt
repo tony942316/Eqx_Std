@@ -7,6 +7,8 @@ project(Stdm
 
 message("Compiler is: ${CMAKE_CXX_COMPILER_ID}")
 
+add_subdirectory(OSHeader)
+#add_subdirectory(OSm)
 add_subdirectory(Stdm)
 add_subdirectory(StdHeader)
 
@@ -27,7 +29,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     add_executable(ModMain)
     target_sources(ModMain PRIVATE ModMain.cpp)
     target_compile_features(ModMain PRIVATE cxx_std_20)
-    target_link_libraries(ModMain PRIVATE FooMod)
+    target_link_libraries(ModMain PRIVATE FooMod OSHeader)
 
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         target_compile_options(GMF INTERFACE
@@ -35,7 +37,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
             /GR-)
     else ()
         target_compile_options(GMF INTERFACE
-            -Wall -Wextra -Wpedantic -Wconversion -Wno-deprecated-declarations
+            -Wall -Wextra -Wpedantic -Wconversion
             -Werror
             -fno-rtti)
     endif()
