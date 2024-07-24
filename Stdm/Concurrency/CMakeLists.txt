@@ -55,8 +55,8 @@ add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/latch.pcm"
     COMMENT "Build latch Header Unit"
     COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
-        -Wno-pragma-system-header-outside-header -xc++-system-header
-        --precompile latch -o latch.pcm
+        -Wno-shorten-64-to-32 -Wno-pragma-system-header-outside-header
+        -xc++-system-header --precompile latch -o latch.pcm
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Latch.cpp
     COMMAND_EXPAND_LISTS)
 

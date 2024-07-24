@@ -91,7 +91,8 @@ add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/sstream.pcm"
     COMMENT "Build sstream Header Unit"
     COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
-        -Wno-pragma-system-header-outside-header -xc++-system-header
+        -Wno-pragma-system-header-outside-header
+        -Wno-inline-namespace-reopened-noninline -xc++-system-header
         --precompile sstream -o sstream.pcm
         DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/StringStream.cpp
     COMMAND_EXPAND_LISTS)

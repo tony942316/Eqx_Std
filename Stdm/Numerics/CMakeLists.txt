@@ -7,8 +7,9 @@ add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/complex.pcm"
     COMMENT "Build complex Header Unit"
     COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
-        -Wno-pragma-system-header-outside-header -xc++-system-header
-        --precompile complex -o complex.pcm
+        -Wno-implicit-float-conversion -Wno-unknown-warning-option
+        -Wno-user-defined-literals -Wno-pragma-system-header-outside-header
+        -xc++-system-header --precompile complex -o complex.pcm
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Complex.cpp
     COMMAND_EXPAND_LISTS)
 

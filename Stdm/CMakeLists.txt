@@ -66,7 +66,7 @@ target_sources(Stdm
         Meta.cpp
             Meta/Type_Traits.cpp
         Numerics.cpp
-        #Numerics/CMath.cpp
+        Numerics/CMath.cpp
             Numerics/Complex.cpp
             Numerics/Numbers.cpp
             Numerics/Random.cpp
@@ -80,9 +80,9 @@ target_sources(Stdm
         Utils.cpp
             Utils/Bit.cpp
             Utils/Compare.cpp
-            #Utils/CStdDef.cpp
-            #Utils/CStdInt.cpp
-            #Utils/CStdLib.cpp
+            Utils/CStdDef.cpp
+            Utils/CStdInt.cpp
+            Utils/CStdLib.cpp
             Utils/Exception.cpp
             Utils/Execution.cpp
             Utils/Functional.cpp
@@ -146,6 +146,9 @@ target_compile_options(Stdm PRIVATE -Wno-experimental-header-units
     -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Time/chrono.pcm
     -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/bit.pcm
     -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/compare.pcm
+    -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/cstddef.pcm
+    -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/cstdint.pcm
+    -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/cstdlib.pcm
     -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/exception.pcm
     -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/execution.pcm
     -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/Utils/functional.pcm
@@ -170,6 +173,7 @@ add_dependencies(Stdm
     HURanges
     HUString HUString_View
     HUChrono
-    HUBit HUCompare HUException HUExecution HUFunctional HUInitializer_List
-        HULimits HUOptional HUSource_Location HUUtility)
+    HUBit HUCompare HUCStdDef HUCStdInt HUCStdLib HUException HUExecution
+        HUFunctional HUInitializer_List HULimits HUOptional HUSource_Location
+        HUUtility)
 endif()

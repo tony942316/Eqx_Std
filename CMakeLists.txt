@@ -31,11 +31,12 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
     if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         target_compile_options(GMF INTERFACE
-            /W4
+            /W4 /WX
             /GR-)
     else ()
         target_compile_options(GMF INTERFACE
             -Wall -Wextra -Wpedantic -Wconversion -Wno-deprecated-declarations
+            -Werror
             -fno-rtti)
     endif()
 

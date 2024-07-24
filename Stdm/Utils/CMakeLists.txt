@@ -7,8 +7,8 @@ add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/bit.pcm"
     COMMENT "Build bit Header Unit"
     COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
-        -Wno-pragma-system-header-outside-header -xc++-system-header
-        --precompile bit -o bit.pcm
+        -Wno-sign-conversion -Wno-pragma-system-header-outside-header
+        -xc++-system-header --precompile bit -o bit.pcm
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Bit.cpp
     COMMAND_EXPAND_LISTS)
 
@@ -19,9 +19,45 @@ add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/compare.pcm"
     COMMENT "Build compare Header Unit"
     COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
-        -Wno-pragma-system-header-outside-header -xc++-system-header
-        --precompile compare -o compare.pcm
+        -Wno-implicit-int-conversion -Wno-pragma-system-header-outside-header
+        -xc++-system-header --precompile compare -o compare.pcm
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Compare.cpp
+    COMMAND_EXPAND_LISTS)
+
+add_custom_target(HUCStdDef
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/cstddef.pcm")
+
+add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/cstddef.pcm"
+    COMMENT "Build cstddef Header Unit"
+    COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
+        -Wno-pragma-system-header-outside-header -xc++-system-header
+        --precompile cstddef -o cstddef.pcm
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/CStdDef.cpp
+    COMMAND_EXPAND_LISTS)
+
+add_custom_target(HUCStdInt
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/cstdint.pcm")
+
+add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/cstdint.pcm"
+    COMMENT "Build cstdint Header Unit"
+    COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
+        -Wno-pragma-system-header-outside-header -xc++-system-header
+        --precompile cstdint -o cstdint.pcm
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/CStdInt.cpp
+    COMMAND_EXPAND_LISTS)
+
+add_custom_target(HUCStdLib
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/cstdlib.pcm")
+
+add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/cstdlib.pcm"
+    COMMENT "Build cstdlib Header Unit"
+    COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
+        -Wno-gnu-include-next -Wno-pragma-system-header-outside-header
+        -xc++-system-header --precompile cstdlib -o cstdlib.pcm
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/CStdLib.cpp
     COMMAND_EXPAND_LISTS)
 
 add_custom_target(HUException
@@ -55,8 +91,8 @@ add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/functional.pcm"
     COMMENT "Build functional Header Unit"
     COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
-        -Wno-pragma-system-header-outside-header -xc++-system-header
-        --precompile functional -o functional.pcm
+        -Wno-ambiguous-ellipsis -Wno-pragma-system-header-outside-header
+        -xc++-system-header --precompile functional -o functional.pcm
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Functional.cpp
     COMMAND_EXPAND_LISTS)
 
@@ -79,7 +115,7 @@ add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/limits.pcm"
     COMMENT "Build limits Header Unit"
     COMMAND clang++ -std=c++20 $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
-        -Wno-pragma-system-header-outside-header -xc++-system-header
+        -Wno-sign-conversion -Wno-pragma-system-header-outside-header -xc++-system-header
         --precompile limits -o limits.pcm
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/Limits.cpp
     COMMAND_EXPAND_LISTS)
