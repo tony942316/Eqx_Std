@@ -7,7 +7,7 @@ module;
 export module Eqx.Stdm.Numerics.CMath;
 
 #ifdef _MSC_VER
-export import <cmath>
+export import <cmath>;
 #else
 export namespace std
 {
