@@ -1,9 +1,14 @@
 module;
 
+#ifndef _MSC_VER
 #include <cmath>
+#endif // _MSC_VER
 
 export module Eqx.Stdm.Numerics.CMath;
 
+#ifdef _MSC_VER
+export import <cmath>
+#else
 export namespace std
 {
     // Types
@@ -120,3 +125,4 @@ export namespace std
     using std::sph_legendre;
     using std::sph_neumann;
 }
+#endif // _MSC_VER
