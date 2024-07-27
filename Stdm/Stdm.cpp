@@ -13,3 +13,5 @@ export import Eqx.Stdm.Ranges;
 export import Eqx.Stdm.Strings;
 export import Eqx.Stdm.Time;
 export import Eqx.Stdm.Utils;
+
+export using namespace std::literals;

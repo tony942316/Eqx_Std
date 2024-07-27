@@ -1,8 +1,5 @@
-#include <osh.hpp>
-
 import Eqx.Stdm;
-
-using namespace std::literals;
+import Eqx.OSm;
 
 constexpr auto c_Seperator = "***********************"sv;
 
@@ -188,6 +185,82 @@ void fileSystemIterTest()
         });
 }
 
+constexpr auto port = 42'069;
+constexpr auto bufsize = 127;
+
+std::string server()
+{
+    auto sock = osm::socket::open(osm::socket::domain::inet,
+        osm::socket::type::stream);
+    if (sock == osm::socket::error::invalid)
+    {
+        std::cerr << "sock";
+    }
+    auto sockopt = osm::socket::setsockopt(sock, osm::socket::level::socket,
+        osm::socket::option::reuseaddr);
+    if (sockopt != 0)
+    {
+        std::cerr << "sockopt";
+    }
+    auto b = osm::socket::bind(sock, port);
+    if (b == -1)
+    {
+        std::cerr << "bind";
+    }
+    auto l = osm::socket::listen(sock);
+    if (l == -1)
+    {
+        std::cerr << "listen";
+    }
+    auto acc = osm::socket::accept(sock, osm::socket::flag::cloexec);
+    if (acc == -1)
+    {
+        std::cerr << "accept";
+    }
+
+    auto buf = std::array<char, bufsize>{};
+    auto bytes = osm::socket::recv(acc, buf.data(), buf.size());
+    buf.at(static_cast<std::size_t>(bytes)) = '\0';
+    const char* msg = "Hello Client!";
+    const auto len = 14;
+    [[maybe_unused]] auto data = osm::socket::send(acc, msg, len);
+
+    return std::string{buf.data()};
+}
+
+std::string client()
+{
+    auto sock = osm::socket::open(osm::socket::domain::inet,
+        osm::socket::type::stream);
+    if (sock == osm::socket::error::invalid)
+    {
+        std::cerr << "sock";
+    }
+    auto con = osm::socket::connect(sock, "127.0.0.1", port);
+    if (con == osm::socket::error::socket)
+    {
+        std::cerr << "connect";
+    }
+
+    const char* msg = "Hello Server!";
+    const auto len = 14;
+    [[maybe_unused]] auto data = osm::socket::send(sock, msg, len);
+    auto buf = std::array<char, bufsize>{};
+    auto bytes = osm::socket::recv(sock, buf.data(), buf.size());
+    buf.at(static_cast<std::size_t>(bytes)) = '\0';
+    return std::string{buf.data()};
+}
+
+void clientServer()
+{
+    auto serv = std::async(std::launch::async, server);
+    std::this_thread::sleep_for(1'000ms);
+    auto cli = std::async(std::launch::async, client);
+
+    std::cout << "Serv: " << serv.get() << '\n';
+    std::cout << "Client: " << cli.get() << '\n';
+}
+
 static_assert(std::vector<std::string>{ "Hello"s }
     == std::vector<std::string>{ "Hello"s });
 static_assert(std::same_as<std::make_signed_t<unsigned int>, int>);
@@ -212,13 +285,14 @@ void allTests()
     runTest(sleepTest);
     runTest(equalTest);
     runTest(fileSystemIterTest);
-
-    std::cout << "End: ";
-    std::cin.get();
 }
 
 int main()
 {
-    allTests();
+    clientServer();
+    //allTests();
+
+    std::cout << "End: ";
+    std::cin.get();
     return 0;
 }

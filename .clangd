@@ -12,5 +12,6 @@ Diagnostics:
     Remove: [ performance-avoid-endl,
       modernize-use-trailing-return-type,
       readability-avoid-const-params-in-decls,
+      readability-identifier-length,
       misc-unused-using-decls ]
   UnusedIncludes: None
