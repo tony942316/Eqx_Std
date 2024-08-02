@@ -144,12 +144,12 @@ export namespace osm::socket
     }
 
     [[nodiscard]] int recv(const socket_t fd, char* buf,
-        unsigned int len) noexcept
+        const size_t len) noexcept
     {
 #if LINUX
         return static_cast<int>(::recv(fd, buf, len, 0));
 #elif WINDOWS
-        return ::recv(fd, buf, len, 0);
+        return ::recv(fd, buf, static_cast<int>(len), 0);
 #endif
     }
 

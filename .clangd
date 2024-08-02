@@ -13,5 +13,6 @@ Diagnostics:
       modernize-use-trailing-return-type,
       readability-avoid-const-params-in-decls,
       readability-identifier-length,
+      readability-magic-numbers,
       misc-unused-using-decls ]
   UnusedIncludes: None
