@@ -67,6 +67,8 @@ module;
 #define LINUX false
 #define WINDOWS true
 
+#define SOCK_CLOEXEC 0x80000
+
 #endif // _WIN32
 
 export module Eqx.OSm;
