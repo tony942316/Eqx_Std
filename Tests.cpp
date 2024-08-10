@@ -1,9 +1,7 @@
-export module Tests;
+export module Eqx.Stdm.Tests;
 
 import Eqx.Stdm;
 import Eqx.OSm;
-
-using namespace std::literals;
 
 namespace tests
 {

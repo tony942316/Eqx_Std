@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
 
-add_library(GMF INTERFACE) # Global Module Flags
-
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 else ()
     function(makeht arg1 arg2)

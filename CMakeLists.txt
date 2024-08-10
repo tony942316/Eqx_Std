@@ -5,14 +5,17 @@ project(Stdm
     DESCRIPTION "C++ Standard Library As Modules"
     LANGUAGES CXX)
 
-message("Compiler is: ${CMAKE_CXX_COMPILER_ID}")
+add_library(GMF INTERFACE) # Global Module Flags
+
+add_subdirectory(StdHeader)
+add_subdirectory(Stdm)
 
 add_subdirectory(OSHeader)
 add_subdirectory(OSm)
-add_subdirectory(Stdm)
-add_subdirectory(StdHeader)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    message("Compiler is: ${CMAKE_CXX_COMPILER_ID}")
+
     add_library(Tests STATIC)
     target_sources(Tests
         PUBLIC FILE_SET CXX_MODULES FILES

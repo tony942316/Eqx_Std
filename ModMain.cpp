@@ -1,7 +1,7 @@
 import Eqx.Stdm;
 import Eqx.OSm;
 
-import Tests;
+import Eqx.Stdm.Tests;
 
 int main()
 {
