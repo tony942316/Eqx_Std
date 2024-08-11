@@ -82,4 +82,6 @@
 #include <source_location>
 #include <utility>
 
+using namespace std::literals;
+
 #endif // STDHEADER_STDH_HPP
