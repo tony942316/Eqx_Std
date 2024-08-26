@@ -1,6 +1,14 @@
 export module Eqx.Stdm.Tests;
 
 #include <Eqx/std.hpp>
+#include <Eqx/os.hpp>
+
+#ifdef __linux__
+
+#define INVALID_SOCKET (-1)
+#define SOCKET_ERROR (-1)
+
+#endif
 
 using namespace std::literals;
 
@@ -27,7 +35,7 @@ namespace tests
     inline void fileRead() noexcept;
     inline void equal() noexcept;
     inline void fileSystemIterTest() noexcept;
-    //inline void socket() noexcept;
+    inline void socket() noexcept;
 }
 
 namespace tests
@@ -57,7 +65,7 @@ namespace tests
         std::cout << c_Delim;
         fileSystemIterTest();
         std::cout << c_Delim;
-        //socket();
+        socket();
         std::cout << c_Delim;
     }
 
@@ -261,66 +269,84 @@ namespace tests
             });
     }
 
-    /*
     inline std::string server() noexcept
     {
-        auto sock = osm::socket::open(osm::socket::domain::inet,
-            osm::socket::type::stream);
-        if (sock == osm::socket::error::invalid)
+        auto sock = ::socket(AF_INET, SOCK_STREAM, 0);
+        if (sock == INVALID_SOCKET)
         {
             std::cerr << "sock";
         }
-        auto sockopt = osm::socket::setsockopt(sock, osm::socket::level::socket,
-            osm::socket::option::reuseaddr);
+        static auto enable = 1;
+#ifdef __linux__
+        auto sockopt = ::setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
+            reinterpret_cast<void*>(&enable), sizeof(enable));
+#endif
+#ifdef _WIN32
+        auto sockopt = ::setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
+            reinterpret_cast<const char*>(&enable), sizeof(enable));
+#endif
         if (sockopt != 0)
         {
             std::cerr << "sockopt";
         }
-        auto b = osm::socket::bind(sock, port);
+        auto server_address = sockaddr_in();
+        server_address.sin_family = AF_INET;
+        server_address.sin_addr.s_addr = INADDR_ANY;
+        server_address.sin_port = htons(port);
+        auto b = ::bind(sock, reinterpret_cast<sockaddr*>(&server_address),
+            sizeof(server_address));
         if (b == -1)
         {
             std::cerr << "bind";
         }
-        auto l = osm::socket::listen(sock);
+        auto l = ::listen(sock, 5);
         if (l == -1)
         {
             std::cerr << "listen";
         }
-        auto acc = osm::socket::accept(sock, osm::socket::flag::cloexec);
+        auto client_address = sockaddr_in();
+        socklen_t client_address_size = sizeof(client_address);
+        auto acc = ::accept(sock, reinterpret_cast<sockaddr*>(&client_address),
+            &client_address_size);
         if (acc == -1)
         {
             std::cerr << "accept";
         }
 
         auto buf = std::array<char, bufsize>{};
-        auto bytes = osm::socket::recv(acc, buf.data(), buf.size());
+        auto bytes = ::recv(acc, buf.data(), buf.size(), 0);
         buf.at(static_cast<std::size_t>(bytes)) = '\0';
         const char* msg = "Hello Client!";
         const auto len = 14;
-        [[maybe_unused]] auto data = osm::socket::send(acc, msg, len);
+        [[maybe_unused]] auto data = ::send(acc, msg, len, 0);
 
         return std::string{buf.data()};
     }
 
     inline std::string client() noexcept
     {
-        auto sock = osm::socket::open(osm::socket::domain::inet,
-            osm::socket::type::stream);
-        if (sock == osm::socket::error::invalid)
+        auto sock = ::socket(AF_INET, SOCK_STREAM, 0);
+        if (sock == INVALID_SOCKET)
         {
             std::cerr << "sock";
         }
-        auto con = osm::socket::connect(sock, "127.0.0.1", port);
-        if (con == osm::socket::error::socket)
+        auto server_address = sockaddr_in{};
+        server_address.sin_family = AF_INET;
+        server_address.sin_port = htons(port);
+
+        inet_pton(AF_INET, "127.0.0.1", &server_address.sin_addr);
+        auto con = ::connect(sock, reinterpret_cast<sockaddr*>(&server_address),
+            sizeof(server_address));
+        if (con == SOCKET_ERROR)
         {
             std::cerr << "connect";
         }
 
         const char* msg = "Hello Server!";
-        const auto len = 14;
-        [[maybe_unused]] auto data = osm::socket::send(sock, msg, len);
+        const auto len = strlen(msg);
+        [[maybe_unused]] auto data = ::send(sock, msg, len, 0);
         auto buf = std::array<char, bufsize>{};
-        auto bytes = osm::socket::recv(sock, buf.data(), buf.size());
+        auto bytes = ::recv(sock, buf.data(), buf.size(), 0);
         buf.at(static_cast<std::size_t>(bytes)) = '\0';
         return std::string{buf.data()};
     }
@@ -329,7 +355,10 @@ namespace tests
     {
         std::cout << "Socket Test:\n"sv;
 
-        osm::socket::wsaInit();
+#ifdef _WIN32
+        WSADATA wsaData = {0};
+        WSAStartup(MAKEWORD(2, 2), &wsaData);
+#endif
 
         auto serv = std::async(std::launch::async, server);
         std::this_thread::sleep_for(1'000ms);
@@ -338,5 +367,4 @@ namespace tests
         std::cout << "Hello Server! == "sv << serv.get() << '\n';
         std::cout << "Hello Client! == "sv << cli.get() << '\n';
     }
-*/
 }
