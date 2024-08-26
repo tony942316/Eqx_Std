@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(GMF INTERFACE /wd5244)
 else ()
     add_custom_target(CT_stdc++
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/stdc++.pcm")
