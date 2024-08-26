@@ -1,7 +1,43 @@
 cmake_minimum_required(VERSION 3.28)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    target_compile_options(GMF INTERFACE /wd5244)
+    target_compile_options(GMF INTERFACE /wd5105 /wd5244)
+    target_compile_definitions(GMF INTERFACE
+        WIN32_LEAN_AND_MEAN
+        NOGDICAPMASKS
+        NOSYSMETRICS
+        NOMENUS
+        NOICONS
+        NOSYSCOMMANDS
+        NORASTEROPS
+        OEMRESOURCE
+        NOATOM
+        NOCLIPBOARD
+        NOCOLOR
+        NOCTLMGR
+        NODRAWTEXT
+        NOKERNEL
+        NONLS
+        NOMEMMGR
+        NOMETAFILE
+        NOOPENFILE
+        NOSCROLL
+        NOSERVICE
+        NOSOUND
+        NOTEXTMETRIC
+        NOWH
+        NOCOMM
+        NOKANJI
+        NOHELP
+        NOPROFILER
+        NODEFERWINDOWPOS
+        NOMCX
+        NORPC
+        NOPROXYSTUB
+        NOIMAGE
+        NOTAPE
+        NOMINMAX)
+    target_link_libraries(GMF INTERFACE wsock32 ws2_32)
 else ()
     add_custom_target(CT_stdc++
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/stdc++.pcm")

@@ -314,7 +314,12 @@ namespace tests
         }
 
         auto buf = std::array<char, bufsize>{};
+#ifdef _WIN32
+        auto bytes = ::recv(acc, buf.data(), static_cast<int>(buf.size()), 0);
+#endif
+#ifdef __linux__
         auto bytes = ::recv(acc, buf.data(), buf.size(), 0);
+#endif
         buf.at(static_cast<std::size_t>(bytes)) = '\0';
         const char* msg = "Hello Client!";
         const auto len = 14;
@@ -344,9 +349,20 @@ namespace tests
 
         const char* msg = "Hello Server!";
         const auto len = strlen(msg);
+#ifdef _WIN32
+        [[maybe_unused]] auto data = ::send(sock, msg,
+            static_cast<int>(len), 0);
+#endif
+#ifdef __linux__
         [[maybe_unused]] auto data = ::send(sock, msg, len, 0);
+#endif
         auto buf = std::array<char, bufsize>{};
+#ifdef _WIN32
+        auto bytes = ::recv(sock, buf.data(), static_cast<int>(buf.size()), 0);
+#endif
+#ifdef __linux__
         auto bytes = ::recv(sock, buf.data(), buf.size(), 0);
+#endif
         buf.at(static_cast<std::size_t>(bytes)) = '\0';
         return std::string{buf.data()};
     }
