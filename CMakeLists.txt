@@ -44,22 +44,4 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
             -Werror
             -fno-rtti)
     endif()
-
-    add_executable(Isolate)
-    target_sources(Isolate PRIVATE Isolate.cpp)
-    target_compile_features(Isolate PRIVATE cxx_std_20)
-    target_link_libraries(Isolate PRIVATE Stdm)
-
-    set_target_properties(Isolate PROPERTIES
-        CXX_STANDARD_REQUIRED On
-        CXX_EXTENSIONS Off
-        EXPORT_COMPILE_COMMANDS On)
-
-    add_executable(HeaderMain)
-    target_sources(HeaderMain PRIVATE HeaderMain.cpp)
-    #target_link_libraries(HeaderMain PRIVATE StdHeader OSHeader)
-
-    set_target_properties(HeaderMain PROPERTIES
-        CXX_EXTENSIONS Off
-        EXPORT_COMPILE_COMMANDS On)
 endif()

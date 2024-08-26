@@ -1,4 +1,5 @@
 #include <Eqx/std.hpp>
+#include <Eqx/os.hpp>
 
 import Eqx.Stdm.Tests;
 
