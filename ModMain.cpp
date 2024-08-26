@@ -1,5 +1,4 @@
-import Eqx.Stdm;
-import Eqx.OSm;
+#include <Eqx/std.hpp>
 
 import Eqx.Stdm.Tests;
 
@@ -9,5 +8,5 @@ int main()
     tests::all();
     std::cout << "\nEnd: ";
     std::cin.get();
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -1,7 +1,8 @@
 export module Eqx.Stdm.Tests;
 
-import Eqx.Stdm;
-import Eqx.OSm;
+#include <Eqx/std.hpp>
+
+using namespace std::literals;
 
 namespace tests
 {
@@ -26,7 +27,7 @@ namespace tests
     inline void fileRead() noexcept;
     inline void equal() noexcept;
     inline void fileSystemIterTest() noexcept;
-    inline void socket() noexcept;
+    //inline void socket() noexcept;
 }
 
 namespace tests
@@ -56,7 +57,7 @@ namespace tests
         std::cout << c_Delim;
         fileSystemIterTest();
         std::cout << c_Delim;
-        socket();
+        //socket();
         std::cout << c_Delim;
     }
 
@@ -260,6 +261,7 @@ namespace tests
             });
     }
 
+    /*
     inline std::string server() noexcept
     {
         auto sock = osm::socket::open(osm::socket::domain::inet,
@@ -336,4 +338,5 @@ namespace tests
         std::cout << "Hello Server! == "sv << serv.get() << '\n';
         std::cout << "Hello Client! == "sv << cli.get() << '\n';
     }
+*/
 }

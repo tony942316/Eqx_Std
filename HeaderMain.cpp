@@ -1,7 +1,7 @@
-#include <stdh.hpp>
-#include <osh.hpp>
+//#include <stdh.hpp>
+//#include <osh.hpp>
 
-using namespace std::literals;
+//using namespace std::literals;
 
 int main()
 {

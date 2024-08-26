@@ -1,4 +1,4 @@
-import Eqx.Stdm;
+#include <Eqx/std.hpp>
 
 int main()
 {

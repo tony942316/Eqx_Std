@@ -7,11 +7,7 @@ project(Stdm
 
 add_library(GMF INTERFACE) # Global Module Flags
 
-add_subdirectory(StdHeader)
 add_subdirectory(Stdm)
-
-add_subdirectory(OSHeader)
-add_subdirectory(OSm)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     message("Compiler is: ${CMAKE_CXX_COMPILER_ID}")
@@ -22,7 +18,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
             Tests.cpp)
 
     target_compile_features(Tests PUBLIC cxx_std_20)
-    target_link_libraries(Tests PUBLIC Stdm OSm)
+    target_link_libraries(Tests PUBLIC Stdm)
 
     set_target_properties(Tests PROPERTIES
         CXX_STANDARD_REQUIRED On
@@ -52,7 +48,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     add_executable(Isolate)
     target_sources(Isolate PRIVATE Isolate.cpp)
     target_compile_features(Isolate PRIVATE cxx_std_20)
-    target_link_libraries(Isolate PRIVATE Stdm OSm)
+    target_link_libraries(Isolate PRIVATE Stdm)
 
     set_target_properties(Isolate PROPERTIES
         CXX_STANDARD_REQUIRED On
@@ -61,7 +57,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
     add_executable(HeaderMain)
     target_sources(HeaderMain PRIVATE HeaderMain.cpp)
-    target_link_libraries(HeaderMain PRIVATE StdHeader OSHeader)
+    #target_link_libraries(HeaderMain PRIVATE StdHeader OSHeader)
 
     set_target_properties(HeaderMain PROPERTIES
         CXX_EXTENSIONS Off
