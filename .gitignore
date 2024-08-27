@@ -2,3 +2,4 @@ out/
 .cache/
 compile_commands.json
 Text.txt
+Rebuild.sh

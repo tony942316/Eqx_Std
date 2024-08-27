@@ -39,12 +39,12 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         NOMINMAX)
     target_link_libraries(GMF INTERFACE wsock32 ws2_32)
 else ()
-    add_custom_target(CT_stdc++
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/stdc++.pcm")
+    add_custom_target(CT_std
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/std.pcm")
 
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/stdc++.pcm"
-        COMMENT "Build stdc++ Header Unit"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/std.pcm"
+        COMMENT "Build std Header Unit"
         COMMAND clang++ -std=c++20
             $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
             -Wno-user-defined-literals
@@ -60,23 +60,23 @@ else ()
             -Wno-ambiguous-ellipsis
             -Wno-pragma-system-header-outside-header
 
-            -xc++-system-header --precompile bits/stdc++.h
+            -I${CMAKE_CURRENT_SOURCE_DIR}/include
+            -xc++-system-header --precompile Eqx/std.hpp
             DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/Eqx/std.hpp"
         COMMAND_EXPAND_LISTS)
 
-    add_library(HUstdc++ INTERFACE)
-    add_dependencies(HUstdc++ CT_stdc++)
-    target_compile_options(HUstdc++ INTERFACE
+    add_library(HUstd INTERFACE)
+    add_dependencies(HUstd CT_std)
+    target_compile_options(HUstd INTERFACE
         -Wno-experimental-header-units
-        -Wno-include-angled-in-module-purview
-        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/stdc++.pcm)
+        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/std.pcm)
 
-    add_custom_target(CT_osc++
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/unistd.pcm")
+    add_custom_target(CT_os
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/os.pcm")
 
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/unistd.pcm"
-        COMMENT "Build unistd Header Unit"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/os.pcm"
+        COMMENT "Build os Header Unit"
         COMMAND clang++ -std=c++20
             $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
             -Wno-user-defined-literals
@@ -92,24 +92,18 @@ else ()
             -Wno-ambiguous-ellipsis
             -Wno-pragma-system-header-outside-header
 
-            -xc++-system-header --precompile unistd.h sys/types.h sys/socket.h
-                netinet/in.h netdb.h arpa/inet.h
+            -I${CMAKE_CURRENT_SOURCE_DIR}/include
+            -xc++-system-header --precompile Eqx/os.hpp
             DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/Eqx/os.hpp"
         COMMAND_EXPAND_LISTS)
 
-    add_library(HUosc++ INTERFACE)
-    add_dependencies(HUosc++ CT_osc++)
-    target_compile_options(HUosc++ INTERFACE
+    add_library(HUos INTERFACE)
+    add_dependencies(HUos CT_os)
+    target_compile_options(HUos INTERFACE
         -Wno-experimental-header-units
-        -Wno-include-angled-in-module-purview
-        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/unistd.pcm
-        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/types.pcm
-        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/socket.pcm
-        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/in.pcm
-        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/netdb.pcm
-        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/inet.pcm)
+        -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/os.pcm)
 
-    target_compile_options(GMF INTERFACE -fretain-comments-from-system-headers)
+    target_compile_options(GMF INTERFACE --relocatable-pch -fretain-comments-from-system-headers)
 endif()
 
 add_library(Stdm INTERFACE)
@@ -120,5 +114,5 @@ target_link_libraries(Stdm INTERFACE GMF)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 else ()
-    target_link_libraries(Stdm INTERFACE HUstdc++ HUosc++)
+    target_link_libraries(Stdm INTERFACE HUstd HUos)
 endif()

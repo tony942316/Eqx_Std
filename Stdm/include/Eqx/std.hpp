@@ -1,96 +1,83 @@
-#ifdef __clang__
-
-import <bits/stdc++.h>;
-
-#endif // __clang__
-
-#ifdef _MSC_VER
-
 // Algorithms
-import <algorithm>;
-import <numeric>;
+#include <algorithm>
+#include <numeric>
 
 // Concepts
-import <concepts>;
+#include <concepts>
 
 // Concurrency
-import <atomic>;
-import <barrier>;
-import <condition_variable>;
-import <future>;
-import <latch>;
-import <mutex>;
-import <semaphore>;
-import <thread>;
+#include <atomic>
+#include <barrier>
+#include <condition_variable>
+#include <future>
+#include <latch>
+#include <mutex>
+#include <semaphore>
+#include <thread>
 
 // Containers
-import <array>;
-import <deque>;
-import <forward_list>;
-import <list>;
-import <map>;
-import <queue>;
-import <set>;
-import <span>;
-import <stack>;
-import <unordered_map>;
-import <unordered_set>;
-import <vector>;
+#include <array>
+#include <deque>
+#include <forward_list>
+#include <list>
+#include <map>
+#include <queue>
+#include <set>
+#include <span>
+#include <stack>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 // IO
-import <filesystem>;
-import <fstream>;
-import <iomanip>;
-import <ios>;
-import <iostream>;
-import <istream>;
-import <ostream>;
-import <sstream>;
+#include <filesystem>
+#include <fstream>
+#include <iomanip>
+#include <ios>
+#include <iostream>
+#include <istream>
+#include <ostream>
+#include <sstream>
 
 // Iterator
-import <iterator>;
+#include <iterator>
 
 // Locale
-import <locale>;
+#include <locale>
 
 // Meta
-import <type_traits>;
+#include <type_traits>
 
 // Numerics
-import <cmath>;
-import <complex>;
-import <numbers>;
-import <random>;
+#include <cmath>
+#include <complex>
+#include <numbers>
+#include <random>
 
 // Ranges
-import <ranges>;
+#include <ranges>
 
 // Strings
-import <string>;
-import <string_view>;
+#include <string>
+#include <string_view>
+#include <cstring>
 
 // Time
-import <chrono>;
+#include <chrono>
 
 // Utils
-import <bit>;
-import <compare>;
-import <cstddef>;
-import <cstdint>;
-import <cstdlib>;
-import <exception>;
-import <execution>;
-import <functional>;
-import <initializer_list>;
-import <limits>;
-import <optional>;
-import <source_location>;
-import <utility>;
+#include <bit>
+#include <compare>
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+#include <exception>
+#include <execution>
+#include <functional>
+#include <initializer_list>
+#include <limits>
+#include <optional>
+#include <source_location>
+#include <utility>
 
-#endif // _MSC_VER
-
-#if !defined(__clang__) && defined(__GNUC___)
-
-#error No GCC Implementation
-
-#endif // __GNUC__
+using namespace std::literals;

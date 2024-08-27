@@ -1,7 +1,7 @@
 export module Eqx.Stdm.Tests;
 
-#include <Eqx/std.hpp>
-#include <Eqx/os.hpp>
+import <Eqx/std.hpp>;
+import <Eqx/os.hpp>;
 
 #ifdef __linux__
 
@@ -9,8 +9,6 @@ export module Eqx.Stdm.Tests;
 #define SOCKET_ERROR (-1)
 
 #endif
-
-using namespace std::literals;
 
 namespace tests
 {
