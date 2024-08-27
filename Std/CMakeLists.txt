@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.28)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    target_compile_options(GMF INTERFACE /wd5105 /wd5244)
-    target_compile_definitions(GMF INTERFACE
+    target_compile_options(Eqx_GMF INTERFACE /wd5105 /wd5244)
+    target_compile_definitions(Eqx_GMF INTERFACE
         WIN32_LEAN_AND_MEAN
         NOGDICAPMASKS
         NOSYSMETRICS
@@ -37,16 +37,16 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
         NOIMAGE
         NOTAPE
         NOMINMAX)
-    target_link_libraries(GMF INTERFACE wsock32 ws2_32)
+    target_link_libraries(Eqx_GMF INTERFACE wsock32 ws2_32)
 else ()
-    add_custom_target(CT_std
+    add_custom_target(P_EQX_CT_STD
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/std.pcm")
 
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/std.pcm"
         COMMENT "Build std Header Unit"
         COMMAND clang++ -std=c++20
-            $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
+            $<TARGET_PROPERTY:Eqx_GMF,INTERFACE_COMPILE_OPTIONS>
             -Wno-user-defined-literals
             -Wno-implicit-int-conversion
             -Wno-shorten-64-to-32
@@ -65,20 +65,20 @@ else ()
             DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/Eqx/std.hpp"
         COMMAND_EXPAND_LISTS)
 
-    add_library(HUstd INTERFACE)
-    add_dependencies(HUstd CT_std)
-    target_compile_options(HUstd INTERFACE
+    add_library(P_EQX_HU_STD INTERFACE)
+    add_dependencies(P_EQX_HU_STD P_EQX_CT_STD)
+    target_compile_options(P_EQX_HU_STD INTERFACE
         -Wno-experimental-header-units
         -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/std.pcm)
 
-    add_custom_target(CT_os
+    add_custom_target(P_EQX_CT_OS
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/os.pcm")
 
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/os.pcm"
         COMMENT "Build os Header Unit"
         COMMAND clang++ -std=c++20
-            $<TARGET_PROPERTY:GMF,INTERFACE_COMPILE_OPTIONS>
+            $<TARGET_PROPERTY:Eqx_GMF,INTERFACE_COMPILE_OPTIONS>
             -Wno-user-defined-literals
             -Wno-implicit-int-conversion
             -Wno-shorten-64-to-32
@@ -97,22 +97,23 @@ else ()
             DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/Eqx/os.hpp"
         COMMAND_EXPAND_LISTS)
 
-    add_library(HUos INTERFACE)
-    add_dependencies(HUos CT_os)
-    target_compile_options(HUos INTERFACE
+    add_library(P_EQX_HU_OS INTERFACE)
+    add_dependencies(P_EQX_HU_OS P_EQX_CT_OS)
+    target_compile_options(P_EQX_HU_OS INTERFACE
         -Wno-experimental-header-units
         -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/os.pcm)
 
-    target_compile_options(GMF INTERFACE --relocatable-pch -fretain-comments-from-system-headers)
+    target_compile_options(Eqx_GMF INTERFACE --relocatable-pch
+        -fretain-comments-from-system-headers)
 endif()
 
-add_library(Stdm INTERFACE)
-target_sources(Stdm INTERFACE include/Eqx/std.hpp include/Eqx/os.hpp)
-target_compile_features(Stdm INTERFACE cxx_std_20)
-target_include_directories(Stdm INTERFACE include)
-target_link_libraries(Stdm INTERFACE GMF)
+add_library(Eqx_Std INTERFACE)
+target_sources(Eqx_Std INTERFACE include/Eqx/std.hpp include/Eqx/os.hpp)
+target_compile_features(Eqx_Std INTERFACE cxx_std_20)
+target_include_directories(Eqx_Std INTERFACE include)
+target_link_libraries(Eqx_Std INTERFACE Eqx_GMF)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 else ()
-    target_link_libraries(Stdm INTERFACE HUstd HUos)
+    target_link_libraries(Eqx_Std INTERFACE P_EQX_HU_STD P_EQX_HU_OS)
 endif()

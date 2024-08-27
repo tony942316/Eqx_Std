@@ -1,4 +1,4 @@
-export module Eqx.Stdm.Tests;
+export module Eqx.Std.Tests;
 
 import <Eqx/std.hpp>;
 import <Eqx/os.hpp>;

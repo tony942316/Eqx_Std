@@ -1,7 +1,7 @@
 import <Eqx/std.hpp>;
 import <Eqx/os.hpp>;
 
-import Eqx.Stdm.Tests;
+import Eqx.Std.Tests;
 
 int main()
 {
