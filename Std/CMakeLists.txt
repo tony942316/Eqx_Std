@@ -103,7 +103,7 @@ else ()
         -Wno-experimental-header-units
         -fmodule-file=${CMAKE_CURRENT_BINARY_DIR}/os.pcm)
 
-    target_compile_options(Eqx_GMF INTERFACE --relocatable-pch
+    target_compile_options(Eqx_GMF INTERFACE
         -fretain-comments-from-system-headers)
 endif()
 

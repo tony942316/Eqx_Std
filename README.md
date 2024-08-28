@@ -8,7 +8,7 @@
 
 ## Summary <a name="summary"></a>
 
-Stdm is the entire c++20 standard library exposed as c++20 modules, given that
+Stdm is the entire c++20 standard library exposed as c++20 header, given that
 `import std;` is a c++23 feature and c++23 has yet to be implemented by the
 major compilers it became convenient to give c++20 projects the compilation time
 benefits of modules. Compiling c++20 modules by hand is tedious so it is
