@@ -269,6 +269,7 @@ namespace tests
 
     inline std::string server() noexcept
     {
+        constexpr auto listenCount = 5;
         auto sock = ::socket(AF_INET, SOCK_STREAM, 0);
         if (sock == INVALID_SOCKET)
         {
@@ -277,11 +278,11 @@ namespace tests
         static auto enable = 1;
 #ifdef __linux__
         auto sockopt = ::setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
-            reinterpret_cast<void*>(&enable), sizeof(enable));
+            std::bit_cast<void*>(&enable), sizeof(enable));
 #endif
 #ifdef _WIN32
         auto sockopt = ::setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
-            reinterpret_cast<const char*>(&enable), sizeof(enable));
+            std::bit_cast<const char*>(&enable), sizeof(enable));
 #endif
         if (sockopt != 0)
         {
@@ -291,20 +292,20 @@ namespace tests
         server_address.sin_family = AF_INET;
         server_address.sin_addr.s_addr = INADDR_ANY;
         server_address.sin_port = htons(port);
-        auto b = ::bind(sock, reinterpret_cast<sockaddr*>(&server_address),
+        auto b = ::bind(sock, std::bit_cast<sockaddr*>(&server_address),
             sizeof(server_address));
         if (b == -1)
         {
             std::cerr << "bind";
         }
-        auto l = ::listen(sock, 5);
+        auto l = ::listen(sock, listenCount);
         if (l == -1)
         {
             std::cerr << "listen";
         }
         auto client_address = sockaddr_in();
         socklen_t client_address_size = sizeof(client_address);
-        auto acc = ::accept(sock, reinterpret_cast<sockaddr*>(&client_address),
+        auto acc = ::accept(sock, std::bit_cast<sockaddr*>(&client_address),
             &client_address_size);
         if (acc == -1)
         {
@@ -338,7 +339,7 @@ namespace tests
         server_address.sin_port = htons(port);
 
         inet_pton(AF_INET, "127.0.0.1", &server_address.sin_addr);
-        auto con = ::connect(sock, reinterpret_cast<sockaddr*>(&server_address),
+        auto con = ::connect(sock, std::bit_cast<sockaddr*>(&server_address),
             sizeof(server_address));
         if (con == SOCKET_ERROR)
         {

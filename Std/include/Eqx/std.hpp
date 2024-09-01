@@ -1,3 +1,6 @@
+#ifndef EQX_STD_HPP
+#define EQX_STD_HPP
+
 // Algorithms
 #include <algorithm>
 #include <numeric>
@@ -81,3 +84,5 @@
 #include <utility>
 
 using namespace std::literals;
+
+#endif // EQX_STD_HPP
