@@ -6,7 +6,8 @@ import Eqx.Std.Tests;
 int main()
 {
     std::cout << "Start:\n\n"sv;
-    tests::all();
+    std::cout << std::boolalpha;
+    tests::iter();
     std::cout << "\nEnd: "sv;
     std::cin.get();
     return EXIT_SUCCESS;

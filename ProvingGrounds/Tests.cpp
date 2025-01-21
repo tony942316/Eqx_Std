@@ -1,5 +1,7 @@
 export module Eqx.Std.Tests;
 
+import Eqx.Std.Tester;
+
 import <Eqx/std.hpp>;
 import <Eqx/os.hpp>;
 
@@ -19,105 +21,125 @@ namespace tests
     constexpr auto c_Delim = "-------------------------------------------\n"sv;
     constexpr auto port = 42'069;
     constexpr auto bufsize = 127;
-
-    export inline void all() noexcept;
-    inline void basicTest() noexcept;
-    inline void iterTest() noexcept;
-    inline void precisionTest() noexcept;
-    inline void pipeTest() noexcept;
-    inline void strCmpTest() noexcept;
-    inline void vecCmpTest() noexcept;
-    inline void durationPrintTest() noexcept;
-    inline void fileWrite() noexcept;
-    inline void sleep() noexcept;
-    inline void fileRead() noexcept;
-    inline void equal() noexcept;
-    inline void fileSystemIterTest() noexcept;
-    inline void socket() noexcept;
 }
 
 namespace tests
 {
-    export inline void all() noexcept
-    {
-        std::cout << c_Delim;
-        basicTest();
-        std::cout << c_Delim;
-        iterTest();
-        std::cout << c_Delim;
-        precisionTest();
-        std::cout << c_Delim;
-        pipeTest();
-        std::cout << c_Delim;
-        strCmpTest();
-        std::cout << c_Delim;
-        durationPrintTest();
-        std::cout << c_Delim;
-        fileWrite();
-        std::cout << c_Delim;
-        sleep();
-        std::cout << c_Delim;
-        fileRead();
-        std::cout << c_Delim;
-        equal();
-        std::cout << c_Delim;
-        fileSystemIterTest();
-        std::cout << c_Delim;
-        socket();
-        std::cout << c_Delim;
-    }
 
-    inline void basicTest() noexcept
+    export inline void basic() noexcept
     {
-        std::cout << "Basic Test: "sv;
-        auto vec = std::vector<int>{ 1, 2, 3 };
-        std::cout << "{ 1 2 3 } == { "sv;
-        std::ranges::for_each(vec, [](const int ele)
-            { std::cout << ele << ' '; });
-        std::cout << "}\n"sv;
-    }
-
-    inline void iterTest() noexcept
-    {
-        std::cout << "Iter Test:\n"sv;
-        auto vec = std::vector<int>{ 1, 2, 3 };
-        auto val = vec.begin();
-        [[maybe_unused]] auto val2 = vec.end();
-        [[maybe_unused]] auto vvv1 = std::begin(vec) == std::end(vec);
-        [[maybe_unused]] auto vvv2 = val == (val + 1);
-        [[maybe_unused]] auto vvv3 = vec.begin() == vec.end();
-        [[maybe_unused]] auto vvv4 =
-            std::ranges::begin(vec) == std::ranges::end(vec);
-        for (auto iter = vec.begin(); iter != vec.end(); ++iter)
-        {
-
-        }
-        std::cout << "{ 1 2 3 } == { "sv;
-        for (int ele : vec)
-        {
-            std::cout << ele << ' ';
-        }
-        std::cout << "}\n"sv;
-        auto acc = std::accumulate(std::ranges::begin(vec),
-            std::ranges::end(vec), int{});
-        auto red = std::reduce(vec.begin(), vec.end());
-        auto str = std::transform_reduce(vec.cbegin() + 1, vec.cend(),
-            "{ "s + std::to_string(vec.front()),
-            [](const std::string& left, const std::string& right)
+        constexpr auto test1 = tester::Test{"{ 1 2 3 }"sv, []() constexpr noexcept
             {
-                return left + ", "s + right;
-            },
-            [](const int val)
-            {
-                return std::to_string(val);
-            }) + " }"s;
+                const auto vec = std::vector<int>{ 1, 2, 3 };
+                auto str = std::string{};
+                str += "{ "sv;
+                std::ranges::for_each(vec, [&str](const int ele) constexpr noexcept 
+                    { 
+                        str += static_cast<char>(48 + ele);
+                        str += ' '; 
+                    });
+                str += "}"sv;
+                return str;
+            }};
 
-        std::cout << "std::accumulate: 6 == "sv << acc << '\n';
-        std::cout << "std::reduce: 6 == "sv << red << '\n';
-        std::cout << "std::transform_reduce: { 1, 2, 3 } == "sv << str << '\n';
+        constexpr auto test2 = tester::Test{"{ 4 5 6 }"sv, []() constexpr noexcept
+            {
+                constexpr auto arr = std::array<int, 3>{ 4, 5, 6 };
+                auto str = std::string{};
+                str += "{ "sv;
+                std::ranges::for_each(arr, [&str](const int ele) constexpr noexcept 
+                    { 
+                        str += static_cast<char>(48 + ele);
+                        str += ' '; 
+                    });
+                str += "}"sv;
+                return str;
+            }};
+
+        constexpr auto test3 = tester::Test{6, []() constexpr noexcept
+            {
+                constexpr auto arr = std::array<int, 3>{ 1, 2, 3 };
+                return std::reduce(arr.begin(), arr.end());
+            }};
+
+        static_assert(test1.run() && test2.run() && test3.run());
+
+        std::cout << "Basic Tests Passed: "sv << tester::test_results(test1, test2, test3) << '\n';
     }
 
-    inline void precisionTest() noexcept
+    // 2. Convert rest of tests to new system
+
+    export inline void iter() noexcept
+    {
+        constexpr auto test1 = tester::Test{true, []() constexpr noexcept
+            {
+
+                auto vec = std::vector<int>{ 1, 2, 3 };
+                return vec.begin() != vec.end()
+                    && vec.begin() + 3 == vec.end()
+                    && std::begin(vec) != std::end(vec)
+                    && std::begin(vec) + 3 == std::end(vec)
+                    && std::ranges::begin(vec) != std::ranges::end(vec)
+                    && std::ranges::begin(vec) + 3 == std::ranges::end(vec);
+            }};
+        
+        constexpr auto test2 = tester::Test{"{ 1 2 3 }"sv, []() constexpr noexcept
+            {
+                auto vec = std::vector<int>{ 1, 2, 3 };
+                auto str = std::string{};
+                str += "{ "sv;
+                
+
+                for (auto iter = vec.begin(); iter != vec.end(); ++iter)
+                {
+        
+                }
+
+                for (int ele : vec)
+                {
+                    str += static_cast<char>(48 + ele);
+                    str += ' '; 
+                }
+
+                str += "}"sv;
+                return str;
+            }};
+
+        constexpr auto test3 = tester::Test{6, []() constexpr noexcept
+            {
+                auto vec = std::vector<int>{ 1, 2, 3 };
+                return std::accumulate(std::ranges::begin(vec),
+                    std::ranges::end(vec), int{});
+
+            }};
+
+        constexpr auto test4 = tester::Test{6, []() constexpr noexcept
+            {
+                auto vec = std::vector<int>{ 1, 2, 3 };
+                return std::reduce(vec.begin(), vec.end()); 
+            }};
+
+        constexpr auto test5 = tester::Test{"{ 1, 2, 3 }"sv, []() noexcept
+            {
+                auto vec = std::vector<int>{ 1, 2, 3 };
+                return std::transform_reduce(vec.cbegin() + 1, vec.cend(),
+                    "{ "s + std::to_string(vec.front()),
+                    [](const std::string& left, const std::string& right)
+                    {
+                        return left + ", "s + right;
+                    },
+                    [](const int val)
+                    {
+                        return std::to_string(val);
+                    }) + " }"s;
+            }};
+
+        static_assert(test1.run() && test2.run() && test3.run() && test4.run());
+
+        std::cout << "Iter Tests Passed: "sv << tester::test_results(test1, test2, test3, test4, test5) << '\n';
+    }
+
+    inline void precision() noexcept
     {
         std::cout << "Precision Test: "sv;
         constexpr auto pi = std::numbers::pi_v<long double>;
@@ -128,7 +150,7 @@ namespace tests
         std::cout << pi << '\n';
     }
 
-    inline void pipeTest() noexcept
+    inline void pipe() noexcept
     {
         std::cout << "Pipe Test: "sv;
         const auto str = "HeLlO"sv;
@@ -142,7 +164,7 @@ namespace tests
         std::cout << "hello == " << lcs << '\n';
     }
 
-    inline void strCmpTest() noexcept
+    inline void str_cmp() noexcept
     {
         std::cout << "String Compare Test: "sv;
         const auto str1 = "Hello"s;
@@ -150,7 +172,7 @@ namespace tests
         std::cout << "1 == "sv << (str1 == str2) << '\n';
     }
 
-    inline void vecCmpTest() noexcept
+    inline void vec_cmp() noexcept
     {
         std::cout << "Vector Compare Test:\n"sv;
         const auto vec1 = std::vector<int>{ 1, 2, 3 };
@@ -175,7 +197,7 @@ namespace tests
         std::cout << "0 == "sv << (vec3 == vec4) << '\n';
     }
 
-    inline void durationPrintTest() noexcept
+    inline void duration_print() noexcept
     {
         std::cout << "Duration Print Test:\n"sv;
         constexpr auto nano = 1'000ns;
@@ -199,7 +221,7 @@ namespace tests
             << (std::stringstream{} << 1'000us).str() << '\n';
     }
 
-    inline void fileWrite() noexcept
+    inline void file_write() noexcept
     {
         std::cout << "Write File:\n"sv;
 
@@ -215,7 +237,7 @@ namespace tests
         std::this_thread::sleep_for(1'000ms);
     }
 
-    inline void fileRead() noexcept
+    inline void file_read() noexcept
     {
         std::cout << "Read File: "sv;
 
@@ -233,7 +255,7 @@ namespace tests
             << '\n';
     }
 
-    inline void fileSystemIterTest() noexcept
+    inline void file_system_iter() noexcept
     {
         auto path = std::filesystem::path{"./"};
         auto dir = std::filesystem::directory_iterator{path};
@@ -367,8 +389,7 @@ namespace tests
     }
 
     inline void socket() noexcept
-    {
-        std::cout << "Socket Test:\n"sv;
+    { std::cout << "Socket Test:\n"sv;
 
 #ifdef _WIN32
         WSADATA wsaData = {0};
@@ -381,5 +402,34 @@ namespace tests
 
         std::cout << "Hello Server! == "sv << serv.get() << '\n';
         std::cout << "Hello Client! == "sv << cli.get() << '\n';
+    }
+
+    export inline void all() noexcept
+    {
+        std::cout << c_Delim;
+        basic();
+        std::cout << c_Delim;
+        iter();
+        std::cout << c_Delim;
+        precision();
+        std::cout << c_Delim;
+        pipe();
+        std::cout << c_Delim;
+        str_cmp();
+        std::cout << c_Delim;
+        duration_print();
+        std::cout << c_Delim;
+        file_write();
+        std::cout << c_Delim;
+        sleep();
+        std::cout << c_Delim;
+        file_read();
+        std::cout << c_Delim;
+        equal();
+        std::cout << c_Delim;
+        file_system_iter();
+        std::cout << c_Delim;
+        socket();
+        std::cout << c_Delim;
     }
 }
