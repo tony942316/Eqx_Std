@@ -6,6 +6,8 @@ target_sources(Eqx_Std INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Eqx/os.hpp)
 target_include_directories(Eqx_Std INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+target_compile_features(Eqx_Std INTERFACE cxx_std_20)
+target_link_libraries(Eqx_Std INTERFACE Eqx_Typical)
 
 if (Eqx_Clang)
     add_custom_command(
