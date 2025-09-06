@@ -1,25 +1,29 @@
 cmake_minimum_required(VERSION 3.28)
 
-add_executable(Basic)
-target_sources(Basic PRIVATE
+add_executable(Test_Basic_Main)
+target_sources(Test_Basic_Main PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Basic.cpp)
-target_compile_features(Basic PRIVATE cxx_std_20)
-target_link_libraries(Basic PRIVATE Eqx_Typical Eqx_Std)
-set_target_properties(Basic PROPERTIES
+target_compile_features(Test_Basic_Main PRIVATE cxx_std_20)
+target_link_libraries(Test_Basic_Main PRIVATE Eqx_Std)
+set_target_properties(Test_Basic_Main PROPERTIES
     CXX_STANDARD_REQUIRED On
     CXX_EXTENSIONS Off
     EXPORT_COMPILE_COMMANDS On)
 
-if (Eqx_MSVC)
-    add_custom_command(TARGET Basic POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/clang_rt.asan_dynamic-x86_64.dll
-            $<TARGET_FILE_DIR:Basic>)
-elseif (Eqx_Clang OR Eqx_GNU)
+add_executable(Test_Basic_Main_Typical)
+target_sources(Test_Basic_Main_Typical PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Basic.cpp)
+target_compile_features(Test_Basic_Main_Typical PRIVATE cxx_std_20)
+target_link_libraries(Test_Basic_Main_Typical PRIVATE Eqx_Std_Typical)
+set_target_properties(Test_Basic_Main_Typical PROPERTIES
+    CXX_STANDARD_REQUIRED On
+    CXX_EXTENSIONS Off
+    EXPORT_COMPILE_COMMANDS On)
 
-else()
-    message(FATAL_ERROR "Invalid Configuration!")
-endif()
+eqx_copy_asan(Test_Basic_Main_Typical)
 
-add_test(NAME Basic
-    COMMAND $<TARGET_FILE:Basic>)
+add_test(NAME Basic_Main
+    COMMAND $<TARGET_FILE:Test_Basic_Main>)
+
+add_test(NAME Basic_Main_Typical
+    COMMAND $<TARGET_FILE:Test_Basic_Main_Typical>)
